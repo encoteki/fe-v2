@@ -2,11 +2,26 @@
 @config "../../tailwind.config.ts";
 
 :root {
-  --background: #ffffff;
+  --background: ##ffff;
   --foreground: #171717;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+@layer base {
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .home-section {
+    @apply tablet:py-30 mx-auto min-h-screen w-full py-10 text-center;
+  }
+  .responsive-text {
+    @apply text-xs sm:text-base md:text-lg lg:text-xl;
+  }
 }

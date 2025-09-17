@@ -5,13 +5,19 @@ export default {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx}', // if code is in src/
     './node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
       screens: {
-        desktop: '1300px',
-        tablet: '600px',
+        tablet: '768px',
+        desktop: '1024px',
+
+        sm: '640px', //large mobile
+        md: '768px', //tablet
+        lg: '1024px', //laptop
+        xl: '1280px', //desktop
       },
       colors: {
         primary: {

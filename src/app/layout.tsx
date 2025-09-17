@@ -3,6 +3,7 @@ import { Outfit } from 'next/font/google'
 import './globals.css'
 import Header from '@/shared/components/Header'
 import Footer from '@/shared/components/Footer'
+import Providers from '@/shared/providers/Providers'
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -20,13 +21,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className={`${outfit.className} antialiased`}>
-        {' '}
         <div className="flex min-h-screen flex-col justify-between">
-          <Header />
-          {children}
-          <Footer />
+          <Providers>
+            <Header />
+            {children}
+            <Footer />
+          </Providers>
         </div>
       </body>
     </html>
