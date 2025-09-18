@@ -55,7 +55,7 @@ export default function Header() {
           {isApps && <HoverNavMenu items={appNavs} />}
         </>
 
-        <section className="text-right tablet:w-[150px] desktop:w-[200px]">
+        <section className="text-right tablet:w-[200px]">
           {isHome && (
             <DefaultButton
               onClick={() => (window.location.href = '/app/mint')}

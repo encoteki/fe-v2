@@ -15,6 +15,10 @@ body {
   button {
     @apply cursor-pointer;
   }
+
+  h3 {
+    @apply text-lg;
+  }
 }
 
 @layer components {
@@ -23,5 +27,11 @@ body {
   }
   .responsive-text {
     @apply text-xs sm:text-base md:text-lg lg:text-xl;
+  }
+  .app-container {
+    @apply w-full py-16 tablet:py-24;
+  }
+  .mint-modal {
+    @apply tablet:rounded-4xl rounded-2xl bg-white px-6 py-6 tablet:px-6;
   }
 }
