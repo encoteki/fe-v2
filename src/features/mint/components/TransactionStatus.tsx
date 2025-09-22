@@ -65,8 +65,10 @@ export default function TransactionStatus() {
       <div className="mx-auto py-4 tablet:py-8">
         <div
           key={status}
-          className={`absolute h-20 w-24 rounded-full ${current?.shadow} animate-zoom-in blur-2xl`}
+          className={`absolute h-16 w-24 tablet:h-20 ${current?.shadow} animate-zoom-in select-none blur-2xl`}
+          style={{ WebkitTapHighlightColor: 'transparent' }}
         />
+
         <div
           className="shadow-xs relative z-10 cursor-pointer rounded-full bg-white p-2 tablet:p-4"
           onClick={changeStatus}
