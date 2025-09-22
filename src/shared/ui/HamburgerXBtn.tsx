@@ -16,7 +16,7 @@ export function HamburgerXButton({
       aria-label={open ? 'Close menu' : 'Open menu'}
       aria-expanded={open}
       onClick={onToggle}
-      className={`relative inline-flex h-10 w-10 items-center justify-center bg-white ${className}`}
+      className={`relative inline-flex h-10 w-10 items-center justify-center bg-transparent ${className}`}
     >
       {/* 24x24 icon area */}
       <span className="relative block h-5 w-5">

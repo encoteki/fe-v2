@@ -16,8 +16,16 @@ body {
     @apply cursor-pointer;
   }
 
+  h2 {
+    @apply text-lg tablet:text-xl;
+  }
+
   h3 {
-    @apply text-lg;
+    @apply text-base tablet:text-lg;
+  }
+
+  p {
+    @apply text-sm tablet:text-base;
   }
 }
 
@@ -29,9 +37,9 @@ body {
     @apply text-xs sm:text-base md:text-lg lg:text-xl;
   }
   .app-container {
-    @apply w-full py-16 tablet:py-24;
+    @apply desktop:py-42 flex min-h-screen w-full flex-col justify-center bg-khaki-90 px-6 py-16 tablet:py-24;
   }
   .mint-modal {
-    @apply tablet:rounded-4xl rounded-2xl bg-white px-6 py-6 tablet:px-6;
+    @apply tablet:rounded-4xl mx-auto flex w-full max-w-[400px] flex-col gap-6 rounded-2xl bg-white px-6 py-6 shadow-lg tablet:w-[400px];
   }
 }
