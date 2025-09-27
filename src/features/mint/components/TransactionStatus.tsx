@@ -65,8 +65,11 @@ export default function TransactionStatus() {
       <div className="mx-auto py-4 tablet:py-8">
         <div
           key={status}
-          className={`absolute h-16 w-24 tablet:h-20 ${current?.shadow} animate-zoom-in select-none blur-2xl`}
-          style={{ WebkitTapHighlightColor: 'transparent' }}
+          className={`absolute h-16 w-24 tablet:h-20 ${current?.shadow} animate-zoom-in blur-2xl`}
+          style={{
+            transform: 'translate3d(0,0,0)',
+            willChange: 'filter',
+          }}
         />
 
         <div
