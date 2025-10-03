@@ -5,11 +5,17 @@ import TransactionStatus from '@/features/mint/components/TransactionStatus'
 import { useMintCtx } from '@/features/mint/context/MintContext'
 
 export default function MintPage() {
-  const { isOnTx } = useMintCtx()
+  const { status } = useMintCtx()
 
   return (
-    <main className="app-container">
-      {isOnTx ? <TransactionStatus /> : <SelectPaymentMethod />}
+    <main className="mint-container">
+      <section className="mint-modal">
+        {!status ? (
+          <SelectPaymentMethod />
+        ) : (
+          <TransactionStatus status={status} />
+        )}
+      </section>
     </main>
   )
 }

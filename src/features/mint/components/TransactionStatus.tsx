@@ -1,25 +1,20 @@
 'use client'
 
 import DefaultButton from '@/shared/ui/buttons/DefaultButton'
-
-import Check from '@/features/mint/assets/icons/Check'
-import Clock from '@/features/mint/assets/icons/ClockCountdown'
-import XRound from '@/features/mint/assets/icons/XRound'
 import { useEffect, useState } from 'react'
 import { useMintCtx } from '../context/MintContext'
-
-enum Status {
-  PENDING = 'PENDING', // 0
-  SUCCESS = 'SUCCESS', // 1
-  FAILED = 'FAILED', // 2
-}
+import { Checkmark } from '../ui/Checkmark'
+import { Crossmark } from '../ui/Crossmark'
+import Clock from '../ui/Clock'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Status } from '../enums/StatusEnum'
 
 const state = [
   {
     status: Status.PENDING,
     color: '#1346AC',
     shadow: 'bg-[#1346AC]/40',
-    message: 'Transaction pending...',
+    message: 'Transaction pending',
     desc: 'Please don’t close or refresh this page.',
   },
   {
@@ -34,19 +29,22 @@ const state = [
     color: '#D63B29',
     shadow: 'bg-[#D63B29]/40',
     message: 'Transaction failed',
-    desc: 'Try again to mint the NFT.',
+    desc: 'Failed to mint the NFT.',
   },
 ]
 
-export default function TransactionStatus() {
-  const { setIsOnTx } = useMintCtx()
-  const [status, setStatus] = useState<Status>(Status.PENDING)
-  const [current, setCurrent] = useState(state[0])
+interface TransactionStatusProps {
+  status: Status
+}
+
+export default function TransactionStatus({ status }: TransactionStatusProps) {
+  const { setStatus } = useMintCtx()
+  const [data, setData] = useState(state[0])
 
   // update current whenever status changes
   useEffect(() => {
     const match = state.find((s) => s.status === status)
-    if (match) setCurrent(match)
+    if (match) setData(match)
   }, [status])
 
   const changeStatus = () => {
@@ -61,60 +59,86 @@ export default function TransactionStatus() {
   }
 
   return (
-    <div className="mint-modal">
-      <div className="mx-auto py-4 tablet:py-8">
-        <div
-          key={status}
-          className={`absolute h-16 w-24 tablet:h-20 ${current?.shadow} animate-zoom-in blur-2xl`}
-          style={{
-            transform: 'translate3d(0,0,0)',
-            willChange: 'filter',
-          }}
-        />
+    <>
+      <div className="space-y-8">
+        <div className="mx-auto w-fit py-4 tablet:py-8">
+          <div
+            key={status}
+            className={`absolute h-16 w-24 tablet:h-20 ${data?.shadow} animate-zoom-in blur-2xl`}
+            style={{
+              transform: 'translate3d(0,0,0)',
+              willChange: 'filter',
+            }}
+          />
 
-        <div
-          className="shadow-xs relative z-10 cursor-pointer rounded-full bg-white p-2 tablet:p-4"
-          onClick={changeStatus}
-        >
-          {current?.status === Status.PENDING && (
-            <Clock size={50} colors={current?.color} />
-          )}
-          {current?.status === Status.SUCCESS && (
-            <Check size={50} colors={current?.color} />
-          )}
-          {current?.status === Status.FAILED && (
-            <XRound size={50} colors={current?.color} />
-          )}
+          <div
+            className="shadow-xs relative z-10 w-fit cursor-pointer rounded-full bg-white p-3 tablet:p-4"
+            onClick={changeStatus}
+          >
+            {status === Status.PENDING && (
+              <Clock size={60} color={data?.color} />
+            )}
+            {status === Status.SUCCESS && (
+              <Checkmark size={60} color={data?.color} />
+            )}
+            {status === Status.FAILED && (
+              <Crossmark size={60} color={data?.color} />
+            )}
+          </div>
         </div>
+
+        <motion.div
+          key={status}
+          className="space-y-2 text-center"
+          initial={{ opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.4 }}
+        >
+          <h3 className="font-medium">{data?.message}</h3>
+          <motion.p
+            className="text-sm text-neutral-30"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              delay: 1.2,
+              duration: 0.4,
+              ease: [0.4, 0, 0.2, 1],
+            }}
+          >
+            {data?.desc}
+          </motion.p>
+        </motion.div>
       </div>
 
-      <div className="space-y-2 text-center">
-        <h3 className="font-medium">{current?.message}</h3>
-        <p className="text-sm text-neutral-30">{current?.desc}</p>
-      </div>
-
-      {(current?.status === Status.FAILED ||
-        current?.status === Status.SUCCESS) && (
-        <div className="flex flex-col gap-2">
-          {current?.status === Status.SUCCESS && (
-            <DefaultButton classname="w-full" onClick={() => setIsOnTx(false)}>
-              View transaction detail
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={status}
+          className="flex flex-col gap-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.4 }}
+        >
+          {status === Status.SUCCESS && (
+            <DefaultButton classname="w-full" onClick={() => setStatus(null)}>
+              View transaction
             </DefaultButton>
           )}
 
-          {current?.status === Status.FAILED && (
-            <DefaultButton classname="w-full" onClick={() => setIsOnTx(false)}>
+          {status === Status.FAILED && (
+            <DefaultButton classname="w-full" onClick={() => setStatus(null)}>
               Try again
             </DefaultButton>
           )}
+
           <DefaultButton
-            variant="secondary"
+            variant={status === Status.PENDING ? 'primary' : 'secondary'}
+            disabled={status === Status.PENDING ? true : false}
             onClick={() => (window.location.href = '/')}
           >
-            Return home
+            {status === Status.PENDING ? 'Minting' : 'Return home'}
           </DefaultButton>
-        </div>
-      )}
-    </div>
+        </motion.div>
+      </AnimatePresence>
+    </>
   )
 }

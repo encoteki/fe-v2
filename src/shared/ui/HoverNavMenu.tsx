@@ -36,7 +36,7 @@ export const HoverNavMenu = ({ items }: { items: HoverNavMenuProps[] }) => {
 
   return (
     <div
-      className={`hidden rounded-full border border-primary-green transition-colors ${scrolled ? 'bg-white/20 shadow-[0_2px_10px_rgba(0,0,0,0.1)] backdrop-blur-lg' : 'bg-white shadow-lg'} p-2 tablet:flex tablet:p-3`}
+      className={`hidden rounded-full border border-primary-green shadow-lg transition-all ${scrolled ? 'bg-white/20 backdrop-blur-lg' : 'bg-white'} p-1 tablet:flex tablet:p-2`}
     >
       {items.map((item, idx) => {
         const isActive = activeIdx === idx
@@ -54,7 +54,9 @@ export const HoverNavMenu = ({ items }: { items: HoverNavMenuProps[] }) => {
           >
             {isActive && (
               <motion.span
-                layoutId="active-pill"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 className="absolute inset-0 rounded-full bg-green-10"
               />
             )}

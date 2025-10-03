@@ -6,6 +6,10 @@
   --foreground: #171717;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -14,6 +18,10 @@ body {
 @layer base {
   button {
     @apply cursor-pointer;
+  }
+
+  h1 {
+    @apply text-xl tablet:text-2xl;
   }
 
   h2 {
@@ -30,16 +38,22 @@ body {
 }
 
 @layer components {
+  /* Components */
   .home-section {
     @apply tablet:py-30 mx-auto min-h-screen w-full py-10 text-center;
   }
   .responsive-text {
     @apply text-xs sm:text-base md:text-lg lg:text-xl;
   }
-  .app-container {
-    @apply desktop:py-42 flex min-h-screen w-full flex-col justify-center bg-khaki-90 px-6 py-16 tablet:py-24;
+  .mint-container {
+    @apply desktop:py-42 flex min-h-screen w-full flex-col justify-center bg-khaki-90 px-12 py-16 tablet:py-24;
   }
   .mint-modal {
-    @apply tablet:rounded-4xl mx-auto flex w-full max-w-[400px] flex-col gap-6 rounded-2xl bg-white px-6 py-6 shadow-lg tablet:w-[400px];
+    @apply rounded-4xl mx-auto flex h-[400px] w-full max-w-[400px] flex-col justify-between rounded-2xl bg-white px-6 py-6 shadow-lg tablet:h-[450px] tablet:w-[400px];
+  }
+
+  /* Font */
+  .text-48 {
+    @apply text-3xl font-medium tablet:text-4xl desktop:text-5xl;
   }
 }

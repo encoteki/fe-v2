@@ -5,6 +5,7 @@ import React, {
   Dispatch,
   SetStateAction,
 } from 'react'
+import { Status } from '../enums/StatusEnum'
 
 type MintContextType = {
   // paymentMethod: string
@@ -19,8 +20,8 @@ type MintContextType = {
   // hash: any
   // setHash: Dispatch<SetStateAction<any | null>>
 
-  isOnTx: boolean
-  setIsOnTx: Dispatch<SetStateAction<boolean>>
+  status: Status | null
+  setStatus: Dispatch<SetStateAction<Status | null>>
 }
 
 const MintContext = createContext<MintContextType | undefined>(undefined)
@@ -34,7 +35,7 @@ export const MintProvider: React.FC<{ children: React.ReactNode }> = ({
   // const [txSuccess, setTxSuccess] = useState(false)
   // const [hash, setHash] = useState<any | null>(null)
 
-  const [isOnTx, setIsOnTx] = useState(false)
+  const [status, setStatus] = useState<Status | null>(null)
 
   return (
     <MintContext.Provider
@@ -49,9 +50,8 @@ export const MintProvider: React.FC<{ children: React.ReactNode }> = ({
         // setTxSuccess,
         // hash,
         // setHash,
-
-        isOnTx,
-        setIsOnTx,
+        status,
+        setStatus,
       }}
     >
       {children}
