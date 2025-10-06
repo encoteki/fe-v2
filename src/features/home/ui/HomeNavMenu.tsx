@@ -14,7 +14,7 @@ export default function HomeNavMenu({
 }) {
   return (
     <div
-      className={`${classname} hidden tablet:flex tablet:gap-4 desktop:gap-8`}
+      className={`${classname} hidden bg-transparent tablet:flex tablet:gap-4 desktop:gap-8`}
     >
       {items.map((item, index) => {
         return (

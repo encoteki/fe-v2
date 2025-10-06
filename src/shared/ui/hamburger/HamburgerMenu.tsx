@@ -1,12 +1,13 @@
-import { AnimatePresence, motion } from 'motion/react'
+import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
 import { useEffect, useId, useRef, useState } from 'react'
-import { HamburgerXButton } from './HamburgerXBtn'
+import { HamburgerXButton } from './HamburgerBtn'
 
 interface MenuItem {
   label: string
   href: string
 }
+
 export default function HamburgerMenu({ items }: { items: MenuItem[] }) {
   const [open, setOpen] = useState(false)
   const btnId = useId()
@@ -46,9 +47,9 @@ export default function HamburgerMenu({ items }: { items: MenuItem[] }) {
               key="overlay"
               onClick={() => setOpen(false)}
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black md:hidden"
+              className="fixed inset-0 z-40 bg-white/20 backdrop-blur-lg md:hidden"
             />
 
             {/* dropdown panel (rounded green) */}

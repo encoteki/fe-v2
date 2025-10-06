@@ -2,21 +2,20 @@
 
 import { useAppCtx } from '@/shared/context/AppContext'
 import { cn } from '@/lib/utils'
-import { motion } from 'motion/react'
-import React, { useEffect, useState } from 'react'
+
+import React, { useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
+import { motion } from 'framer-motion'
 
 interface HoverNavMenuProps {
   label: string
   href?: string
 }
 
-export const HoverNavMenu = ({ items }: { items: HoverNavMenuProps[] }) => {
+export const AppNavMenu = ({ items }: { items: HoverNavMenuProps[] }) => {
   const { activeIdx, setActiveIdx } = useAppCtx()
   const router = useRouter()
   const pathname = usePathname()
-
-  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const foundIdx = items.findIndex((item) =>
@@ -25,18 +24,12 @@ export const HoverNavMenu = ({ items }: { items: HoverNavMenuProps[] }) => {
     if (foundIdx !== -1 && foundIdx !== activeIdx) {
       setActiveIdx(foundIdx)
     }
-
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20) // activate blur after 20px scroll
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <div
-      className={`hidden rounded-full border border-primary-green shadow-lg transition-all ${scrolled ? 'bg-white/20 backdrop-blur-lg' : 'bg-white'} p-1 tablet:flex tablet:p-2`}
+      className={`hidden rounded-full border border-primary-green bg-white p-1 shadow-lg transition-all tablet:flex tablet:p-2`}
     >
       {items.map((item, idx) => {
         const isActive = activeIdx === idx
