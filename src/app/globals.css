@@ -1,37 +1,26 @@
 @import 'tailwindcss';
 @config "../../tailwind.config.ts";
 
-:root {
-  --background: ##ffff;
-  --foreground: #171717;
-}
+@plugin 'tailwindcss-animate';
+@custom-variant dark (&:is(.dark *));
 
 html {
   scroll-behavior: smooth;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
 }
 
 @layer base {
   button {
     @apply cursor-pointer;
   }
-
   h1 {
     @apply text-xl tablet:text-2xl;
   }
-
   h2 {
     @apply text-lg tablet:text-xl;
   }
-
   h3 {
     @apply text-base tablet:text-lg;
   }
-
   p {
     @apply text-sm tablet:text-base;
   }
@@ -49,7 +38,16 @@ body {
     @apply desktop:py-42 flex min-h-screen w-full flex-col justify-center bg-khaki-90 px-12 py-16 tablet:py-24;
   }
   .mint-modal {
-    @apply rounded-4xl mx-auto flex h-[400px] w-full max-w-[400px] flex-col justify-between rounded-2xl bg-white px-6 py-6 shadow-lg tablet:h-[450px] tablet:w-[400px];
+    @apply rounded-4xl mx-auto flex h-[400px] w-full max-w-[400px] flex-col justify-between bg-white px-6 py-6 shadow-lg tablet:h-[450px] tablet:w-[400px];
+  }
+  .dao-container {
+    @apply tablet:py-42 flex min-h-screen w-full flex-col justify-start bg-khaki-90 px-6 py-24 desktop:py-52;
+  }
+  .dao-section {
+    @apply mx-auto flex w-full max-w-[912px] flex-col gap-6 tablet:gap-9 desktop:gap-12;
+  }
+  .proposal-card {
+    @apply flex h-[145px] w-full cursor-pointer flex-col justify-between gap-1 rounded-[32px] bg-white p-5 tablet:p-6;
   }
 
   /* Font */

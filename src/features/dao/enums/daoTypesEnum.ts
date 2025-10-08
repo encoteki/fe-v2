@@ -1,0 +1,10 @@
+export enum DaoType {
+  GOVERNANCE = 'GOVERNANCE',
+  BUSINESS_PROPOSAL = 'BUSINESS_PROPOSAL',
+}
+
+export enum ProposalType {
+  PROPOSAL = 'PROPOSAL',
+  DONATION = 'DONATION',
+  BUSINESS = 'BUSINESS',
+}
