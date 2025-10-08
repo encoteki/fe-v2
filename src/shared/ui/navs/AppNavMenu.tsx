@@ -29,7 +29,7 @@ export const AppNavMenu = ({ items }: { items: HoverNavMenuProps[] }) => {
 
   return (
     <div
-      className={`hidden rounded-full border border-primary-green bg-white p-1 shadow-lg transition-all tablet:flex tablet:p-2`}
+      className={`hidden rounded-full border border-primary-green bg-white p-1 shadow-lg transition-all tablet:flex tablet:p-1.5`}
     >
       {items.map((item, idx) => {
         const isActive = activeIdx === idx
