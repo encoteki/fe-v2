@@ -9,6 +9,7 @@ import { AppNavMenu } from '../ui/navs/AppNavMenu'
 import HomeNavMenu from '@/features/home/ui/HomeNavMenu'
 import HamburgerMenu from '../ui/hamburger/HamburgerMenu'
 import { useEffect, useState } from 'react'
+import { WalletSidebar } from '@/features/wallet/components/WalletSidebar'
 
 const homeNavs = [
   { label: 'Collection', href: '#collection' },
@@ -44,7 +45,7 @@ export default function Header() {
 
   return (
     <nav
-      className={`absolute left-0 right-0 top-0 z-50 tablet:fixed ${scrolled ? 'bg-white/20 backdrop-blur-sm' : 'bg-transparent'}`}
+      className={`absolute left-0 right-0 top-0 z-50 ${scrolled ? 'bg-white/20 backdrop-blur-sm' : 'bg-transparent'}`}
     >
       <div className="flex w-full items-center justify-between px-4 pt-4 tablet:pt-6 desktop:px-6">
         <section className="flex flex-row tablet:w-[200px]">
@@ -73,7 +74,7 @@ export default function Header() {
           <section className="text-right tablet:w-[200px]">
             <DefaultButton
               onClick={() => (window.location.href = '/app/mint')}
-              classname="text-sm tablet:text-base font-medium h-full"
+              classname="text-sm tablet:text-base font-medium "
             >
               Launch App
             </DefaultButton>
@@ -81,12 +82,7 @@ export default function Header() {
         )}
         {isApps && (
           <section className="text-right tablet:w-[200px]">
-            <DefaultButton
-              onClick={() => (window.location.href = '/apps/mint')}
-              classname="text-sm tablet:text-base font-medium h-full"
-            >
-              Connect Wallet
-            </DefaultButton>
+            <WalletSidebar />
           </section>
         )}
       </div>
