@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 import React, { useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
+import URL_ROUTES from '@/shared/constants/urlRoute'
 
 interface HoverNavMenuProps {
   label: string
@@ -38,7 +39,7 @@ export const AppNavMenu = ({ items }: { items: HoverNavMenuProps[] }) => {
             key={idx}
             onClick={() => {
               setActiveIdx(idx)
-              router.push(item.href ? item.href : '/app')
+              router.push(item.href ? item.href : URL_ROUTES.HUB)
             }}
             className={cn(
               'relative rounded-full font-medium tablet:min-w-24 tablet:px-4 tablet:py-2 desktop:min-w-32 desktop:px-6 desktop:py-3',

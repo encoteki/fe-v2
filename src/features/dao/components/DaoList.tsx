@@ -7,6 +7,7 @@ import Badge from '../ui/Badge'
 import { useDaoCtx } from '../context/DaoContext'
 import EmptyDao from './EmptyDao'
 import { Skeleton } from '@/shared/ui/Skeleton'
+import URL_ROUTES from '@/shared/constants/urlRoute'
 
 const mockProposal = [
   {
@@ -85,7 +86,7 @@ export function DAOList() {
                   key={index}
                   className="proposal-card mb-8 transition-shadow duration-500 hover:shadow-lg"
                   onClick={() =>
-                    (window.location.href = `/app/dao/${item.code}`)
+                    (window.location.href = `${URL_ROUTES.DAO}/${item.code}`)
                   }
                 >
                   <Badge type={item.type} />

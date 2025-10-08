@@ -1,6 +1,7 @@
 import { DAOList } from '@/features/dao/components/DaoList'
 import { DaoType } from '@/features/dao/enums/daoTypesEnum'
 import { AnimatedTabs } from '@/features/dao/ui/AnimatedTabs'
+import URL_ROUTES from '@/shared/constants/urlRoute'
 import Breadcrumbs from '@/shared/ui/navs/Breadcrumbs'
 import { Metadata } from 'next'
 
@@ -11,8 +12,8 @@ export const metadata: Metadata = {
 }
 
 const links = [
-  { index: 1, page: 'Home', link: '/' },
-  { index: 2, page: 'DAO', link: '/app/dao' },
+  { index: 1, page: 'Home', link: URL_ROUTES.HOME },
+  { index: 2, page: 'DAO', link: URL_ROUTES.DAO },
 ]
 
 const tabs = [

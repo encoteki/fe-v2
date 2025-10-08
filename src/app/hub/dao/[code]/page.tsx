@@ -5,6 +5,7 @@ import Badge from '@/features/dao/ui/Badge'
 import Breadcrumbs from '@/shared/ui/navs/Breadcrumbs'
 import DefaultButton from '@/shared/ui/buttons/DefaultButton'
 import { use, useMemo, useState } from 'react'
+import URL_ROUTES from '@/shared/constants/urlRoute'
 
 interface DaoDetailPageProps {
   params: Promise<{ code: string }>
@@ -38,9 +39,9 @@ export default function DaoDetailPage({ params }: DaoDetailPageProps) {
 
   const links = useMemo(
     () => [
-      { index: 1, page: 'Home', link: '/' },
-      { index: 2, page: 'DAO', link: '/app/dao' },
-      { index: 3, page: mockProposal.name, link: `/app/dao/${code}` },
+      { index: 1, page: 'Home', link: URL_ROUTES.HOME },
+      { index: 2, page: 'DAO', link: URL_ROUTES.DAO },
+      { index: 3, page: mockProposal.name, link: `${URL_ROUTES.DAO}/${code}` },
     ],
     [code],
   )

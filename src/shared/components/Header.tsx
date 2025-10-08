@@ -10,6 +10,7 @@ import HomeNavMenu from '@/features/home/ui/HomeNavMenu'
 import HamburgerMenu from '../ui/hamburger/HamburgerMenu'
 import { useEffect, useState } from 'react'
 import { WalletSidebar } from '@/features/wallet/components/WalletSidebar'
+import URL_ROUTES from '../constants/urlRoute'
 
 const homeNavs = [
   { label: 'Collection', href: '#collection' },
@@ -21,17 +22,16 @@ const homeNavs = [
 ]
 
 const appNavs = [
-  { label: 'Home', href: '/' },
-  { label: 'Mint', href: '/app/mint' },
-  { label: 'DAO', href: '/app/dao' },
-  { label: 'Deals', href: '/app/deals' },
+  { label: 'Home', href: URL_ROUTES.HOME },
+  { label: 'Mint', href: URL_ROUTES.MINT },
+  { label: 'DAO', href: URL_ROUTES.DAO },
 ]
 
 export default function Header() {
   const pathname = usePathname()
 
-  const isHome = pathname === '/'
-  const isApps = pathname.startsWith('/app/')
+  const isHome = pathname === URL_ROUTES.HOME
+  const isApps = pathname.startsWith(URL_ROUTES.HUB)
 
   const [scrolled, setScrolled] = useState(false)
 
@@ -73,7 +73,7 @@ export default function Header() {
         {isHome && (
           <section className="text-right tablet:w-[200px]">
             <DefaultButton
-              onClick={() => (window.location.href = '/app/mint')}
+              onClick={() => (window.location.href = URL_ROUTES.MINT)}
               classname="text-sm tablet:text-base font-medium "
             >
               Launch App
