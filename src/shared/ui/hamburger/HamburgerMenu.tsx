@@ -2,13 +2,9 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
 import { useEffect, useId, useRef, useState } from 'react'
 import { HamburgerXButton } from './HamburgerBtn'
+import { NavProps } from '@/shared/types/nav'
 
-interface MenuItem {
-  label: string
-  href: string
-}
-
-export default function HamburgerMenu({ items }: { items: MenuItem[] }) {
+export default function HamburgerMenu({ items }: { items: NavProps[] }) {
   const [open, setOpen] = useState(false)
   const btnId = useId()
   const panelId = useId()
@@ -35,7 +31,7 @@ export default function HamburgerMenu({ items }: { items: MenuItem[] }) {
       <HamburgerXButton
         open={open}
         onToggle={() => setOpen(!open)}
-        className="md:hidden"
+        className="xl:hidden"
       />
 
       {/* Overlay + Panel */}
@@ -49,10 +45,10 @@ export default function HamburgerMenu({ items }: { items: MenuItem[] }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-white/20 backdrop-blur-lg md:hidden"
+              className="fixed inset-0 z-40 bg-white/20 backdrop-blur-lg xl:hidden"
             />
 
-            {/* dropdown panel (rounded green) */}
+            {/* dropdown panel */}
             <motion.div
               key="panel"
               id={panelId}
@@ -62,7 +58,7 @@ export default function HamburgerMenu({ items }: { items: MenuItem[] }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 260, damping: 22 }}
-              className="fixed left-4 right-4 top-20 z-50 rounded-3xl border-2 border-primary-green/50 bg-primary-green p-2 shadow-xl md:hidden"
+              className="tablet:top-25 fixed left-4 right-4 top-20 z-50 rounded-3xl border-2 border-primary-green/50 bg-primary-green p-2 shadow-xl xl:hidden"
             >
               <ul className="overflow-hidden rounded-2xl bg-primary-green">
                 {items.map((item, idx) => (
@@ -71,7 +67,7 @@ export default function HamburgerMenu({ items }: { items: MenuItem[] }) {
                     className="border-b border-white/10 last:border-0"
                   >
                     <Link
-                      href={item.href}
+                      href={'#' + item.id}
                       className="block w-full px-5 py-4 text-left text-white/95 outline-none transition hover:bg-white/20 hover:text-yellow-300 focus:bg-white/20"
                       onClick={() => setOpen(false)}
                     >

@@ -7,8 +7,8 @@ import React, {
 } from 'react'
 
 type AppContextType = {
-  activeIdx: number
-  setActiveIdx: Dispatch<SetStateAction<number>>
+  activeIdx: number | undefined
+  setActiveIdx: Dispatch<SetStateAction<number | undefined>>
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined)
@@ -16,7 +16,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined)
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [activeIdx, setActiveIdx] = useState<number>(0)
+  const [activeIdx, setActiveIdx] = useState<number | undefined>(undefined)
 
   return (
     <AppContext.Provider

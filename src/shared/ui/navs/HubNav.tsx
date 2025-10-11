@@ -2,26 +2,18 @@
 
 import { useAppCtx } from '@/shared/context/AppContext'
 import { cn } from '@/lib/utils'
-
 import React, { useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
-import URL_ROUTES from '@/shared/constants/urlRoute'
+import { NavProps } from '@/shared/types/nav'
 
-interface HoverNavMenuProps {
-  label: string
-  href?: string
-}
-
-export const AppNavMenu = ({ items }: { items: HoverNavMenuProps[] }) => {
+export const HubNav = ({ items }: { items: NavProps[] }) => {
   const { activeIdx, setActiveIdx } = useAppCtx()
   const router = useRouter()
   const pathname = usePathname()
 
   useEffect(() => {
-    const foundIdx = items.findIndex((item) =>
-      pathname.startsWith(item.href ? item.href : ''),
-    )
+    const foundIdx = items.findIndex((item) => pathname.startsWith(item.id))
     if (foundIdx !== -1 && foundIdx !== activeIdx) {
       setActiveIdx(foundIdx)
     }
@@ -30,7 +22,7 @@ export const AppNavMenu = ({ items }: { items: HoverNavMenuProps[] }) => {
 
   return (
     <div
-      className={`hidden rounded-full border border-primary-green bg-white p-1 shadow-lg transition-all tablet:flex tablet:p-1.5`}
+      className={`hidden rounded-full border border-primary-green bg-white p-1 shadow-lg transition-all tablet:flex tablet:p-2`}
     >
       {items.map((item, idx) => {
         const isActive = activeIdx === idx
@@ -39,19 +31,20 @@ export const AppNavMenu = ({ items }: { items: HoverNavMenuProps[] }) => {
             key={idx}
             onClick={() => {
               setActiveIdx(idx)
-              router.push(item.href ? item.href : URL_ROUTES.HUB)
+              router.push(item.id)
             }}
             className={cn(
-              'relative rounded-full font-medium tablet:min-w-24 tablet:px-4 tablet:py-2 desktop:min-w-32 desktop:px-6 desktop:py-3',
-              isActive && 'text-white',
+              'relative rounded-full text-green-10 tablet:min-w-24 tablet:px-4 tablet:py-2 desktop:min-w-32 desktop:px-6 desktop:py-3',
+              isActive && '',
             )}
           >
             {isActive && (
               <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="absolute inset-0 rounded-full bg-green-10"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.25, ease: 'easeInOut' }}
+                className="absolute inset-0 rounded-full bg-primary-green/20"
               />
             )}
             <span className="relative z-10 font-medium">{item.label}</span>

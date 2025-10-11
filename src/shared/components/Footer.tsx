@@ -7,39 +7,40 @@ import XIcon from '@/shared/assets/icons/X'
 import TiktokIcon from '@/shared/assets/icons/Tiktok'
 import TelegramIcon from '@/shared/assets/icons/Telegram'
 
+const socmed = [
+  {
+    name: 'Instagram',
+    icon: <InstagramIcon />,
+    url: 'https://www.instagram.com/encoteki/',
+  },
+  {
+    name: 'Thread',
+    icon: <ThreadsIcon />,
+    url: 'https://www.threads.net/@encoteki',
+  },
+  {
+    name: 'X',
+    icon: <XIcon />,
+    url: 'https://x.com/encoteki',
+  },
+  {
+    name: 'Tiktok',
+    icon: <TiktokIcon />,
+    url: 'https://www.tiktok.com/@encoteki',
+  },
+  {
+    name: 'Telegram',
+    icon: <TelegramIcon />,
+    url: 'https://t.me/encoteki',
+  },
+]
+
 export default function Footer() {
   const pathname = usePathname()
   const currentYear: number = new Date().getFullYear()
 
   const title = 'Join the community and save the world!'
   const copyright = `Encoteki © ${currentYear} All rights reserved`
-  const socmed = [
-    {
-      name: 'Instagram',
-      icon: <InstagramIcon />,
-      url: 'https://www.instagram.com/encoteki/',
-    },
-    {
-      name: 'Thread',
-      icon: <ThreadsIcon />,
-      url: 'https://www.threads.net/@encoteki',
-    },
-    {
-      name: 'X',
-      icon: <XIcon />,
-      url: 'https://x.com/encoteki',
-    },
-    {
-      name: 'Tiktok',
-      icon: <TiktokIcon />,
-      url: 'https://www.tiktok.com/@encoteki',
-    },
-    {
-      name: 'Telegram',
-      icon: <TelegramIcon />,
-      url: 'https://t.me/encoteki',
-    },
-  ]
 
   return (
     <footer className="mx-auto w-full bg-primary-green px-6 py-24 tablet:px-16 desktop:px-32 desktop:py-24">
