@@ -1,65 +1,36 @@
-# Encoteki — Next.js App
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-A modern Web3 dApp front‑end for **Encoteki**: NFTs with real‑world impact, DAO proposals, and multi‑chain experiences (Base + Lisk first‑class). Built with **Next.js 15+ (App Router)**, **TypeScript**, **Tailwind**, and **wagmi/viem**.
+## Getting Started
 
----
-
-## ✨ What’s inside
-
-- **Next.js 15+ (App Router)**
-- **TypeScript**
-- **wagmi + viem** for wallet & RPC
-- **RainbowKit** default wallet UIs
-- **Tailwind v4**
-- **Feature‑based folders** (`/features/*`) and shared UI
-- **Encoteki features**:
-  - Mint **Encoteki NFTs** (TheSatwasBand)
-  - DAO proposals & voting UX
-  - Multi‑chain toggles (Base, Lisk; easy to extend)
-  - AA flows (batched tx, sponsored gas) — optional
-- **Quality**: ESLint, Prettier
-
----
-
-## 🚀 Getting started
-
-### Requirements
-
-- Node 20+ recommended, **yarn** (recommended)
-- RPC endpoints for Base/Lisk (Alchemy, Ankr, etc.)
-- (Optional) Paymaster/AA provider accounts (Safe/Biconomy/Coinbase)
-
-### Install
+First, run the development server:
 
 ```bash
-yarn i
-```
-
-### Environment
-
-Create **`.env.local`** from the example:
-
-```bash
-cp .env.example .env.local
-```
-
-### Run
-
-```bash
+npm run dev
+# or
 yarn dev
-# open http://localhost:3000
+# or
+pnpm dev
+# or
+bun dev
 ```
 
----
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🔗 Web3 configurations
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-### Wallet UI
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-- **RainbowKit**: Familiar multi‑wallet ConnectButton.
+## Learn More
 
----
+To learn more about Next.js, take a look at the following resources:
 
-## 📜 License
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-MIT © Encoteki
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
