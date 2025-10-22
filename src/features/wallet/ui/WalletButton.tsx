@@ -1,4 +1,4 @@
-import { GlareMovingCard } from '@/features/mint/ui/GlareMovingCard'
+import { GlareMovingCard } from '@/shared/ui/GlareMovingCard'
 import Metamask from '@/shared/assets/logos/MetaMask-icon-fox.svg'
 import Image from 'next/image'
 import { shortenAddress } from '@/features/wallet/utils/shortenAddress'

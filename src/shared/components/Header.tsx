@@ -31,7 +31,9 @@ export default function Header() {
   const isHub = pathname.startsWith(URL_ROUTES.HUB)
 
   return (
-    <nav className={`fixed left-0 right-0 top-0 z-50 bg-transparent`}>
+    <nav
+      className={`${isHome ? 'fixed' : 'absolute'} left-0 right-0 top-0 z-50 bg-transparent`}
+    >
       <div className="flex w-full items-center justify-between px-4 pt-4 tablet:pt-6 desktop:px-8">
         <section className="flex items-center gap-4 md:w-[200px]">
           {isHome && <HamburgerMenu items={homeNavs} />}

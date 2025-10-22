@@ -43,7 +43,7 @@ export default function Footer() {
   const copyright = `Encoteki © ${currentYear} All rights reserved`
 
   return (
-    <footer className="mx-auto w-full bg-primary-green px-6 py-24 tablet:px-16 desktop:px-32 desktop:py-24">
+    <footer className="mx-auto w-full rounded-t-3xl bg-primary-green px-16 py-16 tablet:rounded-t-[48px] tablet:px-32 desktop:px-32 desktop:py-48">
       <div className="flex h-auto flex-col tablet:flex-row tablet:justify-between">
         {/* Left Content */}
         <section className="mb-14 flex flex-col gap-4 tablet:mb-0 tablet:w-1/2 tablet:justify-between tablet:gap-10">

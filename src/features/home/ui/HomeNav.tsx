@@ -3,7 +3,7 @@
 import { useAppCtx } from '@/shared/context/AppContext'
 import { cn } from '@/lib/utils'
 import React, { useEffect, useMemo, useRef } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'motion/react'
 import { NavProps } from '@/shared/types/nav'
 
 export const HomeNav = ({ items }: { items: NavProps[] }) => {
@@ -94,7 +94,7 @@ export const HomeNav = ({ items }: { items: NavProps[] }) => {
   }
 
   return (
-    <div className="hidden rounded-full bg-primary-green/10 p-2 transition-all duration-300 xl:flex">
+    <div className="hidden rounded-full bg-primary-green/10 p-2 backdrop-blur-xl transition-all duration-300 xl:flex">
       {items.map((item, idx) => {
         const isActive = activeIdx === idx
         return (

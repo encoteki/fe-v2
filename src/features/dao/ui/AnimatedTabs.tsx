@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import React, { useState } from 'react'
 import { DaoType } from '../enums/daoTypesEnum'
 import { useDaoCtx } from '../context/DaoContext'

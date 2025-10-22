@@ -5,7 +5,7 @@ import { Power } from 'lucide-react'
 import ETH from '@/shared/assets/logos/eth.webp'
 import IDRX from '@/shared/assets/logos/idrx.webp'
 import LSK from '@/shared/assets/logos/lisk.webp'
-import { GlareMovingCard } from '@/features/mint/ui/GlareMovingCard'
+import { GlareMovingCard } from '@/shared/ui/GlareMovingCard'
 import Tiggy from '@/shared/assets/tsb/Tiggy_tp.webp'
 
 const erc20 = [

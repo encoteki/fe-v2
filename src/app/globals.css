@@ -13,27 +13,34 @@ html {
     @apply cursor-pointer;
   }
   h1 {
-    @apply text-xl tablet:text-2xl;
+    @apply text-3xl font-medium leading-tight tablet:text-5xl;
   }
+
   h2 {
-    @apply text-lg tablet:text-xl;
+    @apply text-2xl font-medium leading-snug tablet:text-4xl;
   }
+
   h3 {
-    @apply text-base tablet:text-lg;
+    @apply text-xl font-medium leading-snug tablet:text-2xl;
   }
+
   p {
-    @apply text-sm tablet:text-base;
+    @apply text-base leading-relaxed tablet:text-lg;
   }
 }
 
 @layer components {
   /* Components */
-  .home-section {
-    @apply tablet:py-30 mx-auto min-h-screen w-full py-10 text-center;
+  .hero-container {
+    @apply mx-auto w-full bg-khaki-90 px-8 py-24 shadow-xl tablet:min-h-screen tablet:px-16 tablet:py-32;
   }
-  .responsive-text {
-    @apply text-xs sm:text-base md:text-lg lg:text-xl;
+  .home-container {
+    @apply py-18 mx-auto w-full max-w-[1440px] px-4 tablet:px-8 tablet:py-24 desktop:py-32;
   }
+  .bento-card {
+    @apply tablet:rounded-4xl border-1 h-full rounded-2xl border-primary-green/40 bg-khaki-99 p-4 tablet:border-2 tablet:p-8;
+  }
+
   .mint-container {
     @apply desktop:py-42 flex min-h-screen w-full flex-col justify-center bg-khaki-90 px-12 py-16 tablet:py-24;
   }
@@ -51,8 +58,60 @@ html {
   }
 
   /* Font */
-  .text-48 {
-    @apply text-3xl font-medium tablet:text-4xl desktop:text-5xl;
+  .heading-1 {
+    @apply text-3xl font-semibold leading-tight tablet:text-5xl desktop:text-6xl;
+  }
+
+  .heading-2 {
+    @apply text-2xl font-semibold leading-snug tablet:text-4xl desktop:text-5xl;
+  }
+
+  .heading-3 {
+    @apply text-xl font-semibold leading-snug tablet:text-2xl desktop:text-3xl;
+  }
+
+  /* Body text variants */
+  .body-lg {
+    @apply text-base leading-relaxed tablet:text-lg desktop:text-xl;
+  }
+
+  .body-sm {
+    @apply text-sm leading-relaxed tablet:text-base desktop:text-lg;
+  }
+
+  /* Display / Hero text variants */
+  .display-48 {
+    @apply text-3xl font-medium leading-tight tablet:text-4xl desktop:text-5xl;
+  }
+
+  .display-72 {
+    @apply text-[32px] font-medium leading-tight tablet:text-[56px] desktop:text-[72px];
+  }
+
+  .display-96 {
+    @apply text-5xl font-medium leading-tight tablet:text-[64px] desktop:text-[96px];
+  }
+}
+
+@theme inline {
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
   }
 }
 

@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { GlareMovingCard } from './GlareMovingCard'
+
+import { GlareMovingCard } from '@/shared/ui/GlareMovingCard'
 
 interface MovingNFTCardProps {
   imgUrl?: string
@@ -18,7 +19,7 @@ export default function MovingNFTCard({
     <GlareMovingCard>
       <button
         type="button"
-        className={`flex w-60 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-khaki-90 p-2 md:my-4 tablet:w-72 ${classname}`}
+        className={`flex cursor-pointer flex-col items-stretch rounded-[16px] border-0 p-2 md:my-4 ${classname}`}
         aria-label="View invite F7RA"
         style={{
           transformStyle: 'preserve-3d',

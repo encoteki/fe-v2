@@ -1,6 +1,7 @@
 'use client'
 
 import { useAppCtx } from '@/shared/context/AppContext'
+import ReactLenis from 'lenis/react'
 import { useEffect } from 'react'
 
 export default function HomeLayout({
@@ -43,5 +44,5 @@ export default function HomeLayout({
     }
   }, [setActiveIdx])
 
-  return <>{children}</>
+  return <ReactLenis root>{children}</ReactLenis>
 }
