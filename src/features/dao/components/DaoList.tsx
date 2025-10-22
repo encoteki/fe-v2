@@ -90,7 +90,7 @@ export function DAOList() {
                   }
                 >
                   <Badge type={item.type} />
-                  <h1 className="font-medium">Which animal to donate to?</h1>
+                  <h3 className="font-medium">Which animal to donate to?</h3>
                   <div className="flex justify-between">
                     <p className="text-neutral-30">Voting ends in 19:00:00</p>
                     <p className="text-neutral-30">3 days ago</p>
@@ -102,7 +102,7 @@ export function DAOList() {
         )}
       </section>
 
-      <div className="flex w-full justify-center">pagination</div>
+      <div className="hidden w-full justify-center">pagination</div>
     </>
   )
 }

@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 @config "../../tailwind.config.ts";
-
 @plugin 'tailwindcss-animate';
 @custom-variant dark (&:is(.dark *));
 
@@ -12,20 +11,21 @@ html {
   button {
     @apply cursor-pointer;
   }
+
   h1 {
     @apply text-3xl font-medium leading-tight tablet:text-5xl;
   }
-
   h2 {
     @apply text-2xl font-medium leading-snug tablet:text-4xl;
   }
-
   h3 {
     @apply text-xl font-medium leading-snug tablet:text-2xl;
   }
-
+  h4 {
+    @apply text-base font-medium leading-snug tablet:text-lg;
+  }
   p {
-    @apply text-base leading-relaxed tablet:text-lg;
+    @apply text-sm leading-relaxed tablet:text-base;
   }
 }
 
@@ -55,28 +55,6 @@ html {
   }
   .proposal-card {
     @apply flex h-[145px] w-full cursor-pointer flex-col justify-between gap-1 rounded-[32px] bg-white p-5 tablet:p-6;
-  }
-
-  /* Font */
-  .heading-1 {
-    @apply text-3xl font-semibold leading-tight tablet:text-5xl desktop:text-6xl;
-  }
-
-  .heading-2 {
-    @apply text-2xl font-semibold leading-snug tablet:text-4xl desktop:text-5xl;
-  }
-
-  .heading-3 {
-    @apply text-xl font-semibold leading-snug tablet:text-2xl desktop:text-3xl;
-  }
-
-  /* Body text variants */
-  .body-lg {
-    @apply text-base leading-relaxed tablet:text-lg desktop:text-xl;
-  }
-
-  .body-sm {
-    @apply text-sm leading-relaxed tablet:text-base desktop:text-lg;
   }
 
   /* Display / Hero text variants */

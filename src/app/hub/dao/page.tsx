@@ -37,12 +37,12 @@ export default function DaoPage() {
       <div className="dao-section">
         <header className="space-y-2 tablet:space-y-4">
           <Breadcrumbs items={links} />
-          <p className="text-48">Encoteki DAO</p>
-          <h3 className="">
+          <p className="display-48">Encoteki DAO</p>
+          <h4 className="font-normal">
             Encoteki governs the Encoteki DAO. Owning an NFT allows you to vote
             on our proposals, with the results determining the direction of
             Encoteki’s future initiatives.
-          </h3>
+          </h4>
         </header>
 
         <section className="space-y-6">

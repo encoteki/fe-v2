@@ -45,7 +45,7 @@ export default function SelectPaymentMethod() {
   return (
     <>
       <div className="text-left">
-        <h2 className="font-medium">Payment methods</h2>
+        <h3 className="font-medium">Payment methods</h3>
         <p className="text-sm text-neutral-40">
           Please select a payment method
         </p>
@@ -68,7 +68,7 @@ export default function SelectPaymentMethod() {
                     className="size-[25px]"
                     priority
                   />{' '}
-                  <h3> {item.name}</h3>
+                  <p className="text-base tablet:text-lg"> {item.name}</p>
                 </div>
 
                 <p className="text-[10px] text-gray-400 tablet:text-xs">
@@ -78,7 +78,7 @@ export default function SelectPaymentMethod() {
 
               <div className="flex flex-1 items-end justify-end gap-2">
                 <p>{item.cost}</p>
-                <p className="">{item.name}</p>
+                <p>{item.name}</p>
               </div>
             </button>
           )
