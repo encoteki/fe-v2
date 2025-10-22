@@ -7,7 +7,7 @@ import { Checkmark } from '../ui/Checkmark'
 import { Crossmark } from '../ui/Crossmark'
 import Clock from '../ui/Clock'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Status } from '../enums/StatusEnum'
+import { Status } from '../contants/StatusEnum'
 
 const state = [
   {

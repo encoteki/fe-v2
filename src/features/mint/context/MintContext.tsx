@@ -5,7 +5,7 @@ import React, {
   Dispatch,
   SetStateAction,
 } from 'react'
-import { Status } from '../enums/StatusEnum'
+import { Status } from '../contants/StatusEnum'
 
 type MintContextType = {
   // paymentMethod: string

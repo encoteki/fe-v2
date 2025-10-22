@@ -1,33 +1,21 @@
 'use client'
 
 import Image from 'next/image'
-import ETH from '@/features/mint/assets/eth.webp'
-import IDRX from '@/features/mint/assets/idrx.webp'
-import LSK from '@/features/mint/assets/lisk.webp'
 import { useState } from 'react'
 import DefaultButton from '@/shared/ui/buttons/DefaultButton'
 import { useMintCtx } from '../context/MintContext'
-import { Status } from '../enums/StatusEnum'
+import { Status } from '../contants/StatusEnum'
+import {
+  PAYMENT_ETH,
+  PAYMENT_IDRX,
+  PAYMENT_USDC,
+  PaymentMethod,
+} from '../contants/paymentMethods'
 
-const paymentMethods = [
-  {
-    name: 'ETH',
-    icon: ETH,
-    color: 'bg-gray-100',
-    cost: '0.01',
-  },
-  {
-    name: 'LSK',
-    icon: LSK,
-    color: 'bg-black/10',
-    cost: '0.001',
-  },
-  {
-    name: 'IDRX',
-    icon: IDRX,
-    color: 'bg-primary-blue/10',
-    cost: '350.000',
-  },
+export const paymentMethods: PaymentMethod[] = [
+  PAYMENT_ETH,
+  PAYMENT_USDC,
+  PAYMENT_IDRX,
 ]
 
 export default function SelectPaymentMethod() {
@@ -65,7 +53,7 @@ export default function SelectPaymentMethod() {
                     alt="alt"
                     width={25}
                     height={25}
-                    className="size-[25px]"
+                    className="size-[25px] rounded-full"
                     priority
                   />{' '}
                   <p className="text-base tablet:text-lg"> {item.name}</p>
