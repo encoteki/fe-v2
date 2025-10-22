@@ -1,6 +1,5 @@
 'use client'
 
-import HomeHeading from '../ui/HomeHeading'
 import Image, { StaticImageData } from 'next/image'
 import iconLightBulb from '@/features/home/assets/icons/icon.lightbulb.svg'
 import iconTarget from '@/features/home/assets/icons/icon.target.svg'
@@ -54,13 +53,6 @@ const stepDelay = (index: number, base = 0, step = 80) => base + index * step
 export default function About() {
   return (
     <section id="about" className="home-container">
-      <Reveal variant="fade" duration={500}>
-        <HomeHeading
-          title="About"
-          desc="This roadmap is the blueprint of our sustainable growth ahead"
-        />
-      </Reveal>
-
       <div className="max-w-full">
         <div className="rounded-2xl bg-primary-green px-4 py-6 tablet:rounded-[32px] tablet:p-16 desktop:px-28 desktop:py-20">
           <div className="flex flex-col desktop:flex-row desktop:gap-x-20">
