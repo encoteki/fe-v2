@@ -106,8 +106,8 @@ function PartnersMarquee() {
           </div>
         ))}
       </Marquee>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-[#F9F9F6]"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[#F9F9F6]"></div>
+      <div className="bg-linear-to-r pointer-events-none absolute inset-y-0 left-0 w-1/4 from-[#F9F9F6]"></div>
+      <div className="bg-linear-to-l pointer-events-none absolute inset-y-0 right-0 w-1/4 from-[#F9F9F6]"></div>
     </>
   )
 }

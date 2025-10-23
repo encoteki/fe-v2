@@ -68,7 +68,7 @@ export default function DaoDetailPage({ params }: DaoDetailPageProps) {
         </header>
 
         <div className="flex gap-12">
-          <section className="flex-2/5 rounded-[32px] bg-white p-8">
+          <section className="flex-2/5 rounded-4xl bg-white p-8">
             <div className="mb-8 space-y-6">
               <h1 className="font-medium">Options:</h1>
               <div className="space-y-3">

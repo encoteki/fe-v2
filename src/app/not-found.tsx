@@ -19,7 +19,7 @@ export default function NotFound() {
           and try again.
         </p>
         <Link href="/">
-          <button className="my-8 rounded-[32px] bg-primary-green px-6 py-3 text-white">
+          <button className="rounded-4xl my-8 bg-primary-green px-6 py-3 text-white">
             Go back home
           </button>
         </Link>

@@ -62,7 +62,7 @@ export default function FAQ() {
             >
               <div
                 onClick={() => handleClick(index)}
-                className={`rounded-3xl border border-[#E0E0E0] bg-khaki-99 px-8 py-4 duration-200 hover:cursor-pointer hover:border-primary-green hover:text-primary-green tablet:rounded-[32px] tablet:p-8`}
+                className={`tablet:rounded-4xl rounded-3xl border border-[#E0E0E0] bg-khaki-99 px-8 py-4 duration-200 hover:cursor-pointer hover:border-primary-green hover:text-primary-green tablet:p-8`}
               >
                 <div className="flex items-center justify-between">
                   <span

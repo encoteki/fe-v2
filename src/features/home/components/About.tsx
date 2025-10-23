@@ -54,7 +54,7 @@ export default function About() {
   return (
     <section id="about" className="home-container">
       <div className="max-w-full">
-        <div className="rounded-2xl bg-primary-green px-4 py-6 tablet:rounded-[32px] tablet:p-16 desktop:px-28 desktop:py-20">
+        <div className="tablet:rounded-4xl rounded-2xl bg-primary-green px-4 py-6 tablet:p-16 desktop:px-28 desktop:py-20">
           <div className="flex flex-col desktop:flex-row desktop:gap-x-20">
             {/* Mobile & Tablet */}
             <div className="flex flex-col gap-10 tablet:gap-y-20 desktop:hidden">
@@ -256,7 +256,7 @@ function VMCard({
   // desktop
   return (
     <CardShell>
-      <div className="flex flex-col rounded-[32px] bg-white p-8">
+      <div className="rounded-4xl flex flex-col bg-white p-8">
         <div className="mb-6 h-14 w-14 rounded-xl bg-khaki-90 p-3">
           <Image src={icon} alt="alt" width={32} height={32} />
         </div>
