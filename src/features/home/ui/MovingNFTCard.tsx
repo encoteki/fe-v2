@@ -19,7 +19,7 @@ export default function MovingNFTCard({
     <GlareMovingCard>
       <button
         type="button"
-        className={`flex cursor-pointer flex-col items-stretch rounded-[16px] border-0 p-2 md:my-4 ${classname}`}
+        className={`flex cursor-pointer flex-col items-stretch rounded-2xl border-0 p-2 md:my-4 ${classname}`}
         aria-label="View invite F7RA"
         style={{
           transformStyle: 'preserve-3d',
@@ -28,10 +28,10 @@ export default function MovingNFTCard({
         }}
       >
         <div className="mx-2 flex-1">
-          <div className="relative mt-2 aspect-[3/4] w-full">
+          <div className="aspect-3/4 relative mt-2 w-full">
             <img
               loading="lazy"
-              className="absolute inset-0 h-full w-full rounded-[16px] bg-[#000000] object-cover"
+              className="absolute inset-0 h-full w-full rounded-2xl bg-[#000000] object-cover"
               alt={title}
               src={imgUrl}
               style={{
@@ -41,7 +41,7 @@ export default function MovingNFTCard({
             />
           </div>
         </div>
-        <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono">
+        <div className="mt-2 flex shrink-0 items-center justify-between p-4 font-mono">
           <div className="text-xs">{title}</div>
           <div className="text-xs opacity-50">{`#${tokenId}`}</div>
         </div>

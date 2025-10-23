@@ -51,13 +51,13 @@ export const AnimatedTabs = ({ items, classname }: AnimatedTabsProps) => {
             }
             className={cn(
               'relative min-w-24 flex-1 rounded-full px-4 py-2 font-normal text-gray-400 tablet:min-w-32 tablet:px-6 tablet:py-3',
-              isActive && 'text-[var(--tab-secondary)]',
+              isActive && 'text-(--tab-secondary)',
             )}
           >
             {isActive && (
               <motion.span
                 layoutId="active-pill"
-                className="pointer-events-none absolute inset-0 z-0 rounded-full bg-[var(--tab-primary)]"
+                className="bg-(--tab-primary) pointer-events-none absolute inset-0 z-0 rounded-full"
                 transition={{
                   type: 'spring',
                   stiffness: 500,
