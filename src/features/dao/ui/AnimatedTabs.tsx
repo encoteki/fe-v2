@@ -50,7 +50,7 @@ export const AnimatedTabs = ({ items, classname }: AnimatedTabsProps) => {
               } as React.CSSProperties
             }
             className={cn(
-              'relative min-w-24 flex-1 rounded-full px-4 py-2 font-normal text-gray-400 tablet:min-w-32 tablet:px-6 tablet:py-3',
+              'tablet:min-w-32 tablet:px-6 tablet:py-3 relative min-w-24 flex-1 rounded-full px-4 py-2 font-normal text-gray-400',
               isActive && 'text-[var(--tab-secondary)]',
             )}
           >

@@ -29,7 +29,7 @@ export default function HomeHeading({
 
   return (
     <div
-      className={`${alignText[align]} ${alignWrap[align]} mb-6 w-full px-8 tablet:mb-14 tablet:px-16 desktop:mb-14 ${classname ?? ''}`}
+      className={`${alignText[align]} ${alignWrap[align]} tablet:mb-14 tablet:px-16 desktop:mb-14 mb-6 w-full px-8 ${classname ?? ''}`}
     >
       <TextLineReveal
         start="top 80%"
@@ -37,7 +37,7 @@ export default function HomeHeading({
         staggerAmount={0}
         delay={0}
       >
-        <div className="line mb-2 text-4xl font-medium tablet:mb-3 tablet:text-[64px]">
+        <div className="line tablet:mb-3 tablet:text-[64px] mb-2 text-4xl font-medium">
           {title.split(' ').map((w, i) => (
             <span key={i} className="inline-block">
               {w}&nbsp;
@@ -53,7 +53,7 @@ export default function HomeHeading({
         delay={0.45}
       >
         <div
-          className={`line max-w-[660px] text-base leading-relaxed tablet:text-2xl ${alignWrap[align]}`}
+          className={`line tablet:text-2xl max-w-[660px] text-base leading-relaxed ${alignWrap[align]}`}
         >
           {desc.split(' ').map((word, i) => (
             <span key={i} className="inline-block">

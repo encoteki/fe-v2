@@ -94,7 +94,7 @@ export const HomeNav = ({ items }: { items: NavProps[] }) => {
   }
 
   return (
-    <div className="hidden rounded-full bg-primary-green/10 p-2 backdrop-blur-xl transition-all duration-300 xl:flex">
+    <div className="bg-primary-green/10 hidden rounded-full p-2 backdrop-blur-xl transition-all duration-300 xl:flex">
       {items.map((item, idx) => {
         const isActive = activeIdx === idx
         return (
@@ -102,7 +102,7 @@ export const HomeNav = ({ items }: { items: NavProps[] }) => {
             key={item.id}
             onClick={handleClick(idx, item.id)}
             className={cn(
-              'relative rounded-full font-medium tablet:min-w-24 tablet:px-4 tablet:py-2 desktop:min-w-32 desktop:px-6 desktop:py-3',
+              'tablet:min-w-24 tablet:px-4 tablet:py-2 desktop:min-w-32 desktop:px-6 desktop:py-3 relative rounded-full font-medium',
             )}
           >
             <AnimatePresence>
@@ -114,11 +114,11 @@ export const HomeNav = ({ items }: { items: NavProps[] }) => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.25, ease: 'easeInOut' }}
-                  className="absolute inset-0 rounded-full bg-primary-green/20"
+                  className="bg-primary-green/20 absolute inset-0 rounded-full"
                 />
               )}
             </AnimatePresence>
-            <span className="relative z-10 font-medium text-green-10">
+            <span className="text-green-10 relative z-10 font-medium">
               {item.label}
             </span>
           </button>

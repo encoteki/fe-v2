@@ -22,7 +22,7 @@ export const HubNav = ({ items }: { items: NavProps[] }) => {
 
   return (
     <div
-      className={`hidden rounded-full border border-primary-green bg-white p-1 shadow-lg transition-all tablet:flex tablet:p-2`}
+      className={`border-primary-green tablet:flex tablet:p-2 hidden rounded-full border bg-white p-1 shadow-lg transition-all`}
     >
       {items.map((item, idx) => {
         const isActive = activeIdx === idx
@@ -34,7 +34,7 @@ export const HubNav = ({ items }: { items: NavProps[] }) => {
               router.push(item.id)
             }}
             className={cn(
-              'relative rounded-full text-green-10 tablet:min-w-24 tablet:px-4 tablet:py-2 desktop:min-w-32 desktop:px-6 desktop:py-3',
+              'text-green-10 tablet:min-w-24 tablet:px-4 tablet:py-2 desktop:min-w-32 desktop:px-6 desktop:py-3 relative rounded-full',
               isActive && '',
             )}
           >
@@ -44,7 +44,7 @@ export const HubNav = ({ items }: { items: NavProps[] }) => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.25, ease: 'easeInOut' }}
-                className="absolute inset-0 rounded-full bg-primary-green/20"
+                className="bg-primary-green/20 absolute inset-0 rounded-full"
               />
             )}
             <span className="relative z-10 font-medium">{item.label}</span>

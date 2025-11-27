@@ -61,10 +61,10 @@ export default function TransactionStatus({ status }: TransactionStatusProps) {
   return (
     <>
       <div className="space-y-8">
-        <div className="mx-auto w-fit py-4 tablet:py-8">
+        <div className="tablet:py-8 mx-auto w-fit py-4">
           <div
             key={status}
-            className={`absolute h-16 w-24 tablet:h-20 ${data?.shadow} animate-zoom-in blur-2xl`}
+            className={`tablet:h-20 absolute h-16 w-24 ${data?.shadow} animate-zoom-in blur-2xl`}
             style={{
               transform: 'translate3d(0,0,0)',
               willChange: 'filter',
@@ -72,7 +72,7 @@ export default function TransactionStatus({ status }: TransactionStatusProps) {
           />
 
           <div
-            className="shadow-xs relative z-10 w-fit cursor-pointer rounded-full bg-white p-3 tablet:p-4"
+            className="tablet:p-4 relative z-10 w-fit cursor-pointer rounded-full bg-white p-3 shadow-xs"
             onClick={changeStatus}
           >
             {status === Status.PENDING && (
@@ -96,7 +96,7 @@ export default function TransactionStatus({ status }: TransactionStatusProps) {
         >
           <h3 className="font-medium">{data?.message}</h3>
           <motion.p
-            className="text-sm text-neutral-30"
+            className="text-neutral-30 text-sm"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{

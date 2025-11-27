@@ -62,7 +62,7 @@ export default function FAQ() {
             >
               <div
                 onClick={() => handleClick(index)}
-                className={`rounded-3xl border border-[#E0E0E0] bg-khaki-99 px-8 py-4 duration-200 hover:cursor-pointer hover:border-primary-green hover:text-primary-green tablet:rounded-[32px] tablet:p-8`}
+                className={`bg-khaki-99 hover:border-primary-green hover:text-primary-green tablet:rounded-[32px] tablet:p-8 rounded-3xl border border-[#E0E0E0] px-8 py-4 duration-200 hover:cursor-pointer`}
               >
                 <div className="flex items-center justify-between">
                   <span
@@ -83,7 +83,7 @@ export default function FAQ() {
 
                 <p
                   id="faq-content"
-                  className={`transition-max-height overflow-hidden text-black duration-500 ease-in-out ${visibleIndex === index ? 'max-h-96 pt-6' : 'max-h-0 pt-0'} text-justify text-sm font-normal tablet:text-base`}
+                  className={`transition-max-height overflow-hidden text-black duration-500 ease-in-out ${visibleIndex === index ? 'max-h-96 pt-6' : 'max-h-0 pt-0'} tablet:text-base text-justify text-sm font-normal`}
                 >
                   {item.answer}
                 </p>

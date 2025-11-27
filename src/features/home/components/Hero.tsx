@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="hero-container flex flex-row items-center justify-center rounded-b-[64px] tablet:rounded-b-[96px] desktop:rounded-b-[128px]"
+      className="hero-container tablet:rounded-b-[96px] desktop:rounded-b-[128px] flex flex-row items-center justify-center rounded-b-[64px]"
       style={{
         background: `
               radial-gradient(circle at 30% 30%, #f5f1d6, transparent 60%),
@@ -34,7 +34,7 @@ export default function Hero() {
             duration: 0.4,
             ease: [0.4, 0, 0.2, 1],
           }}
-          className="text-base tablet:text-2xl"
+          className="tablet:text-2xl text-base"
         >
           Mint, earn, and make a difference. Our animal-themed NFTs fuel
           non-profit projects that aim to build a better world through

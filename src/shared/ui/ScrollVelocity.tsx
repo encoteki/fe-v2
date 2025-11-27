@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import React, { useContext, useEffect, useRef, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import {
   motion,
   useAnimationFrame,
@@ -9,10 +9,10 @@ import {
   useSpring,
   useTransform,
   useVelocity,
-} from "motion/react"
-import type { MotionValue } from "motion/react"
+} from 'motion/react'
+import type { MotionValue } from 'motion/react'
 
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils'
 
 interface ScrollVelocityRowProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
@@ -26,7 +26,7 @@ export const wrap = (min: number, max: number, v: number) => {
 }
 
 const ScrollVelocityContext = React.createContext<MotionValue<number> | null>(
-  null
+  null,
 )
 
 export function ScrollVelocityContainer({
@@ -48,7 +48,7 @@ export function ScrollVelocityContainer({
 
   return (
     <ScrollVelocityContext.Provider value={velocityFactor}>
-      <div className={cn("relative w-full", className)} {...props}>
+      <div className={cn('relative w-full', className)} {...props}>
         {children}
       </div>
     </ScrollVelocityContext.Provider>
@@ -115,25 +115,25 @@ function ScrollVelocityRowImpl({
     io.observe(container)
 
     const handleVisibility = () => {
-      isPageVisibleRef.current = document.visibilityState === "visible"
+      isPageVisibleRef.current = document.visibilityState === 'visible'
     }
-    document.addEventListener("visibilitychange", handleVisibility, {
+    document.addEventListener('visibilitychange', handleVisibility, {
       passive: true,
     })
     handleVisibility()
 
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
     const handlePRM = () => {
       prefersReducedMotionRef.current = mq.matches
     }
-    mq.addEventListener("change", handlePRM)
+    mq.addEventListener('change', handlePRM)
     handlePRM()
 
     return () => {
       ro.disconnect()
       io.disconnect()
-      document.removeEventListener("visibilitychange", handleVisibility)
-      mq.removeEventListener("change", handlePRM)
+      document.removeEventListener('visibilitychange', handleVisibility)
+      mq.removeEventListener('change', handlePRM)
     }
   }, [children, unitWidth])
 
@@ -166,7 +166,7 @@ function ScrollVelocityRowImpl({
   return (
     <div
       ref={containerRef}
-      className={cn("w-full overflow-hidden whitespace-nowrap", className)}
+      className={cn('w-full overflow-hidden whitespace-nowrap', className)}
       {...props}
     >
       <motion.div

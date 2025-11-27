@@ -9,17 +9,17 @@ export default function NotFound() {
         <Image
           src={NotFoundImg}
           alt="404 Not Found"
-          className="m-auto h-[182px] w-[272px] tablet:h-[325px] tablet:w-[488px]"
+          className="tablet:h-[325px] tablet:w-[488px] m-auto h-[182px] w-[272px]"
         />
-        <h1 className="mb-2 text-2xl font-medium tablet:text-3xl">
+        <h1 className="tablet:text-3xl mb-2 text-2xl font-medium">
           This page is lost in the wild
         </h1>
-        <p className="text-sm tablet:text-base">
+        <p className="tablet:text-base text-sm">
           The page you are looking for cannot be found. Please recheck the URL
           and try again.
         </p>
         <Link href="/">
-          <button className="my-8 rounded-[32px] bg-primary-green px-6 py-3 text-white">
+          <button className="bg-primary-green my-8 rounded-[32px] px-6 py-3 text-white">
             Go back home
           </button>
         </Link>

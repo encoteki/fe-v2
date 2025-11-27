@@ -3,13 +3,13 @@ import EmptyBox from '@/features/dao/assets/empty-box.webp'
 
 export default function EmptyDao() {
   return (
-    <div className="max-w-90 mx-auto flex h-full flex-col items-center justify-center gap-3 text-center">
+    <div className="mx-auto flex h-full max-w-90 flex-col items-center justify-center gap-3 text-center">
       <Image
         src={EmptyBox}
         alt="alt"
         width={256}
         height={256}
-        className="size-32 tablet:size-64"
+        className="tablet:size-64 size-32"
       />
       <h2 className="font-medium">No proposals available</h2>
       <p className="text-neutral-30">

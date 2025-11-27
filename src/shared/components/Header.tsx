@@ -7,9 +7,11 @@ import Logo from '@/shared/assets/logos/logo.webp'
 import DefaultButton from '../ui/buttons/DefaultButton'
 import { HubNav } from '../ui/navs/HubNav'
 import HamburgerMenu from '../ui/hamburger/HamburgerMenu'
-import { WalletSidebar } from '@/features/wallet/components/WalletSidebar'
+// import { WalletSidebar } from '@/features/wallet/components/WalletSidebar'
 import URL_ROUTES from '../constants/urlRoute'
 import { HomeNav } from '@/features/home/ui/HomeNav'
+import { ConnectButton } from '@xellar/kit'
+import { useEffect, useState } from 'react'
 
 const homeNavs = [
   { label: 'Collection', id: 'collection' },
@@ -26,15 +28,23 @@ const hubNavs = [
 ]
 
 export default function Header() {
+  // 1. Buat state untuk melacak apakah sudah di browser
+  const [mounted, setMounted] = useState(false)
+
+  // 2. Set true hanya setelah useEffect berjalan (artinya sudah di browser)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const pathname = usePathname()
   const isHome = pathname === URL_ROUTES.HOME
   const isHub = pathname.startsWith(URL_ROUTES.HUB)
 
   return (
     <nav
-      className={`${isHome ? 'fixed' : 'absolute'} left-0 right-0 top-0 z-50 bg-transparent`}
+      className={`${isHome ? 'fixed' : 'absolute'} top-0 right-0 left-0 z-50 bg-transparent`}
     >
-      <div className="flex w-full items-center justify-between px-4 pt-4 tablet:pt-6 desktop:px-8">
+      <div className="tablet:pt-6 desktop:px-8 flex w-full items-center justify-between px-4 pt-4">
         <section className="flex items-center gap-4 md:w-[200px]">
           {isHome && <HamburgerMenu items={homeNavs} />}
           {isHub && <HamburgerMenu items={hubNavs} />}
@@ -67,9 +77,17 @@ export default function Header() {
           </section>
         )}
         {isHub && (
-          <section className="text-right md:w-[200px]">
-            <WalletSidebar />
-          </section>
+          // <section className="text-right md:w-[200px]">
+          //   <WalletSidebar />
+          // </section>
+          <>
+            {mounted ? (
+              <ConnectButton />
+            ) : (
+              // Opsional: Tampilkan tombol loading/kosong agar layout tidak bergeser
+              <div className="h-10 w-[150px]" />
+            )}
+          </>
         )}
       </div>
     </nav>

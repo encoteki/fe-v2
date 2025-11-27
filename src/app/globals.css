@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@config "../../tailwind.config.ts";
+@config '../../tailwind.config.ts';
 @plugin 'tailwindcss-animate';
 @custom-variant dark (&:is(.dark *));
 
@@ -13,61 +13,61 @@ html {
   }
 
   h1 {
-    @apply text-3xl font-medium leading-tight tablet:text-5xl;
+    @apply tablet:text-5xl text-3xl leading-tight font-medium;
   }
   h2 {
-    @apply text-2xl font-medium leading-snug tablet:text-4xl;
+    @apply tablet:text-4xl text-2xl leading-snug font-medium;
   }
   h3 {
-    @apply text-xl font-medium leading-snug tablet:text-2xl;
+    @apply tablet:text-2xl text-xl leading-snug font-medium;
   }
   h4 {
-    @apply text-base font-medium leading-snug tablet:text-lg;
+    @apply tablet:text-lg text-base leading-snug font-medium;
   }
   p {
-    @apply text-sm leading-relaxed tablet:text-base;
+    @apply tablet:text-base text-sm leading-relaxed;
   }
 }
 
 @layer components {
   /* Components */
   .hero-container {
-    @apply mx-auto w-full bg-khaki-90 px-8 py-24 shadow-xl tablet:min-h-screen tablet:px-16 tablet:py-32;
+    @apply bg-khaki-90 tablet:min-h-screen tablet:px-16 tablet:py-32 mx-auto w-full px-8 py-24 shadow-xl;
   }
   .home-container {
-    @apply py-18 mx-auto w-full max-w-[1440px] px-4 tablet:px-8 tablet:py-24 desktop:py-32;
+    @apply tablet:px-8 tablet:py-24 desktop:py-32 mx-auto w-full max-w-[1440px] px-4 py-18;
   }
   .bento-card {
-    @apply tablet:rounded-4xl border-1 h-full rounded-2xl border-primary-green/40 bg-khaki-99 p-4 tablet:border-2 tablet:p-8;
+    @apply tablet:rounded-4xl border-primary-green/40 bg-khaki-99 tablet:border-2 tablet:p-8 h-full rounded-2xl border-1 p-4;
   }
 
   .mint-container {
-    @apply desktop:py-42 flex min-h-screen w-full flex-col justify-center bg-khaki-90 px-12 py-16 tablet:py-24;
+    @apply desktop:py-42 bg-khaki-90 tablet:py-24 flex min-h-screen w-full flex-col justify-center px-12 py-16;
   }
   .mint-modal {
-    @apply rounded-4xl mx-auto flex h-[400px] w-full max-w-[400px] flex-col justify-between bg-white p-5 shadow-lg tablet:h-[450px] tablet:w-[400px] tablet:p-6;
+    @apply tablet:h-[450px] tablet:w-[400px] tablet:p-6 mx-auto flex h-[400px] w-full max-w-[400px] flex-col justify-between rounded-4xl bg-white p-5 shadow-lg;
   }
   .dao-container {
-    @apply tablet:py-42 flex min-h-screen w-full flex-col justify-start bg-khaki-90 px-6 py-24 desktop:py-52;
+    @apply tablet:py-42 bg-khaki-90 desktop:py-52 flex min-h-screen w-full flex-col justify-start px-6 py-24;
   }
   .dao-section {
-    @apply mx-auto flex w-full max-w-[912px] flex-col gap-6 tablet:gap-9 desktop:gap-12;
+    @apply tablet:gap-9 desktop:gap-12 mx-auto flex w-full max-w-[912px] flex-col gap-6;
   }
   .proposal-card {
-    @apply flex h-[145px] w-full cursor-pointer flex-col justify-between gap-1 rounded-[32px] bg-white p-5 tablet:p-6;
+    @apply tablet:p-6 flex h-[145px] w-full cursor-pointer flex-col justify-between gap-1 rounded-[32px] bg-white p-5;
   }
 
   /* Display / Hero text variants */
   .display-48 {
-    @apply text-3xl font-medium leading-tight tablet:text-4xl desktop:text-5xl;
+    @apply tablet:text-4xl desktop:text-5xl text-3xl leading-tight font-medium;
   }
 
   .display-72 {
-    @apply text-[32px] font-medium leading-tight tablet:text-[56px] desktop:text-[72px];
+    @apply tablet:text-[56px] desktop:text-[72px] text-[32px] leading-tight font-medium;
   }
 
   .display-96 {
-    @apply text-5xl font-medium leading-tight tablet:text-[64px] desktop:text-[96px];
+    @apply tablet:text-[64px] desktop:text-[96px] text-5xl leading-tight font-medium;
   }
 }
 

@@ -55,12 +55,12 @@ export default function DaoDetailPage({ params }: DaoDetailPageProps) {
   return (
     <main className="dao-container">
       <div className="dao-section">
-        <header className="space-y-2 tablet:space-y-4 desktop:space-y-8">
+        <header className="tablet:space-y-4 desktop:space-y-8 space-y-2">
           <Breadcrumbs items={links} />
           <div className="flex flex-col gap-3">
             <Badge type={mockProposal.type} />
             <p className="text-48">{code}</p>
-            <div className="flex justify-between text-neutral-30">
+            <div className="text-neutral-30 flex justify-between">
               <p className="">Voting ends in 10:23:59</p>
               <p className="">Created 2 days ago</p>
             </div>
@@ -77,7 +77,7 @@ export default function DaoDetailPage({ params }: DaoDetailPageProps) {
                     <button
                       key={index}
                       onClick={() => handleClick(index)}
-                      className={`w-full rounded-full border py-3 text-center transition-colors duration-300 hover:border-primary-green ${opt === index ? 'border-primary-green bg-green-90' : 'border-neutral-60 bg-white'}`}
+                      className={`hover:border-primary-green w-full rounded-full border py-3 text-center transition-colors duration-300 ${opt === index ? 'border-primary-green bg-green-90' : 'border-neutral-60 bg-white'}`}
                     >
                       {item.label}
                     </button>

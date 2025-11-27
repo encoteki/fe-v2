@@ -8,7 +8,7 @@ export default function InstagramIcon({
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6 tablet:h-8 tablet:w-8"
+      className="tablet:h-8 tablet:w-8 h-6 w-6"
       width={size}
       height={size}
       fill={colors}

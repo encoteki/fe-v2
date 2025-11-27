@@ -21,23 +21,23 @@ export default function WalletButton({
   return (
     <div
       onClick={onClick}
-      className={`rounded-full px-4 py-3 transition duration-300 hover:scale-105 tablet:px-6 desktop:px-6 desktop:py-3 ${classname} ${
+      className={`tablet:px-6 desktop:px-6 desktop:py-3 rounded-full px-4 py-3 transition duration-300 hover:scale-105 ${classname} ${
         variant === 'primary'
-          ? 'bg-primary-green text-white hover:bg-green-10'
-          : 'border border-primary-green bg-white text-primary-green hover:bg-primary-green/5'
+          ? 'bg-primary-green hover:bg-green-10 text-white'
+          : 'border-primary-green text-primary-green hover:bg-primary-green/5 border bg-white'
       } disabled:cursor-default`}
     >
-      <div className="items-center-safe flex gap-3">
+      <div className="flex items-center-safe gap-3">
         <GlareMovingCard>
           <Image
             src={Metamask}
             alt="alt"
             width={50}
             height={50}
-            className="size-4 tablet:size-6"
+            className="tablet:size-6 size-4"
           />
         </GlareMovingCard>
-        <p className="text-sm font-medium tablet:block">{shortenedAddress}</p>
+        <p className="tablet:block text-sm font-medium">{shortenedAddress}</p>
       </div>
     </div>
   )

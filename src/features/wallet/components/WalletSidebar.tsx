@@ -16,7 +16,7 @@ export function WalletSidebar() {
         <WalletButton variant={'secondary'} />
       </SheetTrigger>
 
-      <SheetContent className="sm:rounded-l-4xl w-full border-0 bg-khaki-90 sm:w-[540px]">
+      <SheetContent className="bg-khaki-90 w-full border-0 sm:w-[540px] sm:rounded-l-4xl">
         <SheetHeader>
           <SheetTitle />
         </SheetHeader>

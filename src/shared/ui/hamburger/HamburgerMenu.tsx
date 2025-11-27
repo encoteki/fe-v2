@@ -58,9 +58,9 @@ export default function HamburgerMenu({ items }: { items: NavProps[] }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 260, damping: 22 }}
-              className="tablet:top-25 fixed left-4 right-4 top-20 z-50 rounded-3xl border-2 border-primary-green/50 bg-primary-green p-2 shadow-xl xl:hidden"
+              className="tablet:top-25 border-primary-green/50 bg-primary-green fixed top-20 right-4 left-4 z-50 rounded-3xl border-2 p-2 shadow-xl xl:hidden"
             >
-              <ul className="overflow-hidden rounded-2xl bg-primary-green">
+              <ul className="bg-primary-green overflow-hidden rounded-2xl">
                 {items.map((item, idx) => (
                   <li
                     key={idx}
@@ -68,7 +68,7 @@ export default function HamburgerMenu({ items }: { items: NavProps[] }) {
                   >
                     <Link
                       href={'#' + item.id}
-                      className="block w-full px-5 py-4 text-left text-white/95 outline-none transition hover:bg-white/20 hover:text-yellow-300 focus:bg-white/20"
+                      className="block w-full px-5 py-4 text-left text-white/95 transition outline-none hover:bg-white/20 hover:text-yellow-300 focus:bg-white/20"
                       onClick={() => setOpen(false)}
                     >
                       {item.label}

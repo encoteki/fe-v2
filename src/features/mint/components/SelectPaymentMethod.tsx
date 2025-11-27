@@ -34,20 +34,20 @@ export default function SelectPaymentMethod() {
     <>
       <div className="text-left">
         <h3 className="font-medium">Payment methods</h3>
-        <p className="text-sm text-neutral-40">
+        <p className="text-neutral-40 text-sm">
           Please select a payment method
         </p>
       </div>
-      <div className="flex flex-col gap-2 tablet:gap-4">
+      <div className="tablet:gap-4 flex flex-col gap-2">
         {paymentMethods.map((item, idx) => {
           return (
             <button
               onClick={() => onChangePayment(idx)}
               key={idx}
-              className={`flex items-center justify-between rounded-2xl border p-2 transition-colors tablet:p-3 ${activeIdx === idx ? `${item.color} border-white` : 'border-gray-200'}`}
+              className={`tablet:p-3 flex items-center justify-between rounded-2xl border p-2 transition-colors ${activeIdx === idx ? `${item.color} border-white` : 'border-gray-200'}`}
             >
               <div className="flex flex-1 flex-col items-start gap-1">
-                <div className="flex gap-2 font-medium tablet:gap-3">
+                <div className="tablet:gap-3 flex gap-2 font-medium">
                   <Image
                     src={item.icon}
                     alt="alt"
@@ -56,10 +56,10 @@ export default function SelectPaymentMethod() {
                     className="size-[25px] rounded-full"
                     priority
                   />{' '}
-                  <p className="text-base tablet:text-lg"> {item.name}</p>
+                  <p className="tablet:text-lg text-base"> {item.name}</p>
                 </div>
 
-                <p className="text-[10px] text-gray-400 tablet:text-xs">
+                <p className="tablet:text-xs text-[10px] text-gray-400">
                   Balance: 0.001 {item.name}
                 </p>
               </div>

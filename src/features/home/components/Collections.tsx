@@ -53,7 +53,7 @@ export default function Collections() {
       )}
 
       <Carousel opts={{ align: 'start' }} className="w-full">
-        <CarouselContent className="mx-6 my-4 tablet:mx-12">
+        <CarouselContent className="tablet:mx-12 mx-6 my-4">
           {tsb.map((item, index) => {
             const card = (
               <MovingNFTCard
@@ -66,7 +66,7 @@ export default function Collections() {
             return (
               <CarouselItem
                 key={index}
-                className="basis-1/1 max-w-[340px] px-4"
+                className="max-w-[340px] basis-1/1 px-4"
               >
                 {isTabletUp ? (
                   <Reveal

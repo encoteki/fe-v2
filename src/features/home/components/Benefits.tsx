@@ -73,7 +73,7 @@ function BenefitText({
 function DealsLinkInline() {
   return (
     <Link href="/partner-deals">
-      <span className="text-sm font-normal text-primary-green tablet:text-base">
+      <span className="text-primary-green tablet:text-base text-sm font-normal">
         View Offer
       </span>
     </Link>
@@ -95,7 +95,7 @@ function PartnersMarquee() {
         {partners.map((item, index) => (
           <div
             key={index}
-            className="size-30 mx-2 flex items-center justify-center"
+            className="mx-2 flex size-30 items-center justify-center"
           >
             <Image
               src={item}
@@ -127,7 +127,7 @@ export default function Benefit() {
       </Reveal>
 
       {/* Mobile View */}
-      <div className="block tablet:hidden">
+      <div className="tablet:hidden block">
         <div className="flex flex-col gap-4">
           {/* 0 - Secure */}
           <Reveal variant="up" duration={600}>
@@ -137,7 +137,7 @@ export default function Benefit() {
                 alt={benefits[0].title}
                 width={128}
                 loading="lazy"
-                className="absolute right-0 top-0 m-4"
+                className="absolute top-0 right-0 m-4"
               />
               <div className="absolute bottom-0 left-0 m-4">
                 <BenefitText
@@ -158,7 +158,7 @@ export default function Benefit() {
                 alt={benefits[1].title}
                 width={128}
                 loading="lazy"
-                className="absolute right-0 top-0 m-4"
+                className="absolute top-0 right-0 m-4"
               />
               <div className="absolute bottom-0 left-0 m-4 w-1/2">
                 <BenefitText
@@ -179,9 +179,9 @@ export default function Benefit() {
                 alt={benefits[2].title}
                 width={161}
                 loading="lazy"
-                className="absolute bottom-0 right-0 m-4"
+                className="absolute right-0 bottom-0 m-4"
               />
-              <div className="absolute left-0 top-0 m-4 w-1/2">
+              <div className="absolute top-0 left-0 m-4 w-1/2">
                 <BenefitText
                   title={benefits[2].title}
                   subtitle={benefits[2].subtitle}
@@ -220,7 +220,7 @@ export default function Benefit() {
       </div>
 
       {/* Tablet View */}
-      <div className="hidden tablet:grid tablet:gap-4 desktop:hidden">
+      <div className="tablet:grid tablet:gap-4 desktop:hidden hidden">
         <div className="grid grid-cols-2 grid-rows-2 gap-4">
           {/* 0 - Secure */}
           <Reveal variant="left" duration={600}>
@@ -230,7 +230,7 @@ export default function Benefit() {
                 alt="alt"
                 width={213}
                 loading="lazy"
-                className="absolute right-0 top-0 m-8"
+                className="absolute top-0 right-0 m-8"
               />
               <div className="absolute bottom-0 left-0 m-8">
                 <BenefitText
@@ -251,7 +251,7 @@ export default function Benefit() {
                 alt="alt"
                 width={140}
                 loading="lazy"
-                className="absolute right-0 top-0 m-8"
+                className="absolute top-0 right-0 m-8"
               />
               <div className="absolute bottom-0 left-0 m-8">
                 <BenefitText
@@ -274,7 +274,7 @@ export default function Benefit() {
                 loading="lazy"
                 className="absolute bottom-0 mb-8"
               />
-              <div className="absolute left-0 top-0 m-8">
+              <div className="absolute top-0 left-0 m-8">
                 <BenefitText
                   title={benefits[2].title}
                   subtitle={benefits[2].subtitle}
@@ -323,7 +323,7 @@ export default function Benefit() {
       </div>
 
       {/* Desktop View */}
-      <div className="hidden desktop:block">
+      <div className="desktop:block hidden">
         <div className="grid gap-3">
           <div className="grid grid-cols-2 gap-3">
             {/* 0 - Secure */}
@@ -333,7 +333,7 @@ export default function Benefit() {
                   src={Secure}
                   alt={benefits[0].title}
                   loading="lazy"
-                  className="absolute right-0 top-0 m-8"
+                  className="absolute top-0 right-0 m-8"
                 />
                 <div className="absolute bottom-0 left-0 m-8 w-[200px]">
                   <BenefitText
@@ -353,7 +353,7 @@ export default function Benefit() {
                   src={ProfitSharing}
                   alt={benefits[1].title}
                   loading="lazy"
-                  className="absolute right-0 top-0 m-8"
+                  className="absolute top-0 right-0 m-8"
                 />
                 <div className="absolute bottom-0 left-0 m-8 w-[268px]">
                   <BenefitText
@@ -372,7 +372,7 @@ export default function Benefit() {
             <Reveal variant="up" duration={600}>
               {/* h-full fixes height collapse when inner children are absolute */}
               <div className="bento-card relative h-full">
-                <div className="absolute left-0 top-0 m-8">
+                <div className="absolute top-0 left-0 m-8">
                   <BenefitText
                     title={benefits[2].title}
                     subtitle={benefits[2].subtitle}
@@ -423,7 +423,7 @@ export default function Benefit() {
                     src={EventPass}
                     alt={benefits[3].title}
                     loading="lazy"
-                    className="absolute bottom-0 right-0 m-8"
+                    className="absolute right-0 bottom-0 m-8"
                   />
                 </div>
               </Reveal>
@@ -443,7 +443,7 @@ export default function Benefit() {
                     src={DAO}
                     alt={benefits[4].title}
                     loading="lazy"
-                    className="absolute bottom-0 right-0 m-8"
+                    className="absolute right-0 bottom-0 m-8"
                   />
                 </div>
               </Reveal>

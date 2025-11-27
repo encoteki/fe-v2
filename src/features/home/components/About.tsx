@@ -54,10 +54,10 @@ export default function About() {
   return (
     <section id="about" className="home-container">
       <div className="max-w-full">
-        <div className="rounded-2xl bg-primary-green px-4 py-6 tablet:rounded-[32px] tablet:p-16 desktop:px-28 desktop:py-20">
-          <div className="flex flex-col desktop:flex-row desktop:gap-x-20">
+        <div className="bg-primary-green tablet:rounded-[32px] tablet:p-16 desktop:px-28 desktop:py-20 rounded-2xl px-4 py-6">
+          <div className="desktop:flex-row desktop:gap-x-20 flex flex-col">
             {/* Mobile & Tablet */}
-            <div className="flex flex-col gap-10 tablet:gap-y-20 desktop:hidden">
+            <div className="tablet:gap-y-20 desktop:hidden flex flex-col gap-10">
               <Reveal as="div" variant="up" duration={600}>
                 <AboutBlockMobile paragraphs={paragraphs} />
               </Reveal>
@@ -85,19 +85,19 @@ export default function About() {
             {/* Desktop Left */}
             <div
               id="desktop-left-content"
-              className="hidden w-1/2 desktop:block"
+              className="desktop:block hidden w-1/2"
             >
               <div className="flex h-full flex-col justify-between">
                 <Reveal
                   as="h2"
                   variant="up"
                   duration={600}
-                  className="text-white desktop:text-5xl desktop:font-medium"
+                  className="desktop:text-5xl desktop:font-medium text-white"
                 >
                   About Encoteki
                 </Reveal>
 
-                <div className="font-inter flex flex-col text-base font-normal text-white desktop:gap-y-10">
+                <div className="font-inter desktop:gap-y-10 flex flex-col text-base font-normal text-white">
                   {paragraphs.map((p, i) => (
                     <Reveal
                       key={i}
@@ -106,7 +106,7 @@ export default function About() {
                       duration={500}
                       delay={stepDelay(i, 0, 120)}
                     >
-                      <p className="text-sm font-normal tablet:text-base">
+                      <p className="tablet:text-base text-sm font-normal">
                         {p.paragraph}
                       </p>
                     </Reveal>
@@ -122,7 +122,7 @@ export default function About() {
             {/* Desktop Right */}
             <div
               id="desktop-right-content"
-              className="hidden w-1/2 desktop:block"
+              className="desktop:block hidden w-1/2"
             >
               <div className="flex flex-col justify-between gap-y-10">
                 {visionMission.map((vm, i) => (
@@ -159,7 +159,7 @@ function AboutBlockMobile({
 }) {
   return (
     <div className="text-white">
-      <h1 className="mb-8 text-[32px] font-medium tablet:text-5xl">
+      <h1 className="tablet:text-5xl mb-8 text-[32px] font-medium">
         About Encoteki
       </h1>
 
@@ -172,7 +172,7 @@ function AboutBlockMobile({
             duration={500}
             delay={stepDelay(i, 0, 90)}
           >
-            <span className="text-sm font-normal tablet:text-base">
+            <span className="tablet:text-base text-sm font-normal">
               {p.paragraph}
             </span>
           </Reveal>
@@ -235,7 +235,7 @@ function VMCard({
     return (
       <CardShell>
         <div className="rounded-2xl bg-white px-5 py-6">
-          <div className="w-fit rounded-full bg-khaki-99 p-2">
+          <div className="bg-khaki-99 w-fit rounded-full p-2">
             <Image src={icon} alt="alt" width={32} height={32} />
           </div>
           <div>
@@ -257,7 +257,7 @@ function VMCard({
   return (
     <CardShell>
       <div className="flex flex-col rounded-[32px] bg-white p-8">
-        <div className="mb-6 h-14 w-14 rounded-xl bg-khaki-90 p-3">
+        <div className="bg-khaki-90 mb-6 h-14 w-14 rounded-xl p-3">
           <Image src={icon} alt="alt" width={32} height={32} />
         </div>
         <div className="mb-3 text-2xl font-medium">{title}</div>
