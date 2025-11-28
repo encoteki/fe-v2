@@ -17,7 +17,7 @@ function CollabMarquee() {
       <Marquee pauseOnHover className="px-2 [--duration:10s]">
         {logos.map((src, idx) => (
           <div
-            className="tablet:mx-6 tablet:size-32 desktop:mx-8 desktop:size-40 mx-3 grid size-24 place-content-center"
+            className="mx-3 grid size-24 place-content-center tablet:mx-6 tablet:size-32 desktop:mx-8 desktop:size-40"
             key={idx}
           >
             <Image
@@ -26,20 +26,20 @@ function CollabMarquee() {
               priority
               width={200}
               height={200}
-              className="desktop:size-30 tablet:size-24 size-18 object-contain"
+              className="size-18 object-contain tablet:size-24 desktop:size-30"
             />
           </div>
         ))}
       </Marquee>
-      <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
-      <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r from-background"></div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l from-background"></div>
     </>
   )
 }
 
 export default function Collab() {
   return (
-    <div className="tablet:mt-12 relative mt-6 flex w-full flex-col items-center justify-center overflow-hidden bg-transparent">
+    <div className="relative mt-6 flex w-full flex-col items-center justify-center overflow-hidden bg-transparent tablet:mt-12">
       <CollabMarquee />
     </div>
   )

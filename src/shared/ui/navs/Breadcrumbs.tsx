@@ -18,7 +18,7 @@ export default function Breadcrumbs({ items }: { items: Breadcrumbs[] }) {
               <Link href={item.link}>
                 <span
                   className={
-                    'text-neutral-40 hover:text-neutral-10 transition-colors duration-300'
+                    'text-neutral-40 transition-colors duration-300 hover:text-neutral-10'
                   }
                 >
                   {item.page}

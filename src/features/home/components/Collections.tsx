@@ -53,7 +53,7 @@ export default function Collections() {
       )}
 
       <Carousel opts={{ align: 'start' }} className="w-full">
-        <CarouselContent className="tablet:mx-12 mx-6 my-4">
+        <CarouselContent className="mx-6 my-4 tablet:mx-12">
           {tsb.map((item, index) => {
             const card = (
               <MovingNFTCard

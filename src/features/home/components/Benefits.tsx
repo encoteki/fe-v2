@@ -73,7 +73,7 @@ function BenefitText({
 function DealsLinkInline() {
   return (
     <Link href="/partner-deals">
-      <span className="text-primary-green tablet:text-base text-sm font-normal">
+      <span className="text-sm font-normal text-primary-green tablet:text-base">
         View Offer
       </span>
     </Link>
@@ -106,8 +106,8 @@ function PartnersMarquee() {
           </div>
         ))}
       </Marquee>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-[#F9F9F6]"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[#F9F9F6]"></div>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r from-[#F9F9F6]"></div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l from-[#F9F9F6]"></div>
     </>
   )
 }
@@ -127,7 +127,7 @@ export default function Benefit() {
       </Reveal>
 
       {/* Mobile View */}
-      <div className="tablet:hidden block">
+      <div className="block tablet:hidden">
         <div className="flex flex-col gap-4">
           {/* 0 - Secure */}
           <Reveal variant="up" duration={600}>
@@ -220,7 +220,7 @@ export default function Benefit() {
       </div>
 
       {/* Tablet View */}
-      <div className="tablet:grid tablet:gap-4 desktop:hidden hidden">
+      <div className="hidden tablet:grid tablet:gap-4 desktop:hidden">
         <div className="grid grid-cols-2 grid-rows-2 gap-4">
           {/* 0 - Secure */}
           <Reveal variant="left" duration={600}>
@@ -323,7 +323,7 @@ export default function Benefit() {
       </div>
 
       {/* Desktop View */}
-      <div className="desktop:block hidden">
+      <div className="hidden desktop:block">
         <div className="grid gap-3">
           <div className="grid grid-cols-2 gap-3">
             {/* 0 - Secure */}

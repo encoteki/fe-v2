@@ -13,61 +13,64 @@ html {
   }
 
   h1 {
-    @apply tablet:text-5xl text-3xl leading-tight font-medium;
+    @apply text-3xl leading-tight font-medium tablet:text-5xl;
   }
   h2 {
-    @apply tablet:text-4xl text-2xl leading-snug font-medium;
+    @apply text-2xl leading-snug font-medium tablet:text-4xl;
   }
   h3 {
-    @apply tablet:text-2xl text-xl leading-snug font-medium;
+    @apply text-xl leading-snug font-medium tablet:text-2xl;
   }
   h4 {
-    @apply tablet:text-lg text-base leading-snug font-medium;
+    @apply text-base leading-snug font-medium tablet:text-lg;
   }
   p {
-    @apply tablet:text-base text-sm leading-relaxed;
+    @apply text-sm leading-relaxed tablet:text-base;
   }
 }
 
 @layer components {
   /* Components */
   .hero-container {
-    @apply bg-khaki-90 tablet:min-h-screen tablet:px-16 tablet:py-32 mx-auto w-full px-8 py-24 shadow-xl;
+    @apply mx-auto w-full bg-khaki-90 px-8 py-24 shadow-xl tablet:min-h-screen tablet:px-16 tablet:py-32;
   }
   .home-container {
-    @apply tablet:px-8 tablet:py-24 desktop:py-32 mx-auto w-full max-w-[1440px] px-4 py-18;
+    @apply mx-auto w-full max-w-[1440px] px-4 py-18 tablet:px-8 tablet:py-24 desktop:py-32;
   }
   .bento-card {
-    @apply tablet:rounded-4xl border-primary-green/40 bg-khaki-99 tablet:border-2 tablet:p-8 h-full rounded-2xl border-1 p-4;
+    @apply h-full rounded-2xl border border-primary-green/40 bg-khaki-99 p-4 tablet:rounded-4xl tablet:border-2 tablet:p-8;
   }
 
   .mint-container {
-    @apply desktop:py-42 bg-khaki-90 tablet:py-24 flex min-h-screen w-full flex-col justify-center px-12 py-16;
+    @apply flex min-h-screen w-full flex-col justify-center bg-khaki-90 px-12 py-16 tablet:py-24 desktop:py-42;
   }
   .mint-modal {
-    @apply tablet:h-[450px] tablet:w-[400px] tablet:p-6 mx-auto flex h-[400px] w-full max-w-[400px] flex-col justify-between rounded-4xl bg-white p-5 shadow-lg;
+    @apply mx-auto flex w-full max-w-[400px] flex-col justify-between gap-2 rounded-4xl bg-white p-5 shadow-lg tablet:w-[400px] tablet:gap-4 tablet:p-6;
+  }
+  .payment-card {
+    @apply flex items-center justify-between rounded-2xl border p-2 tablet:p-3;
   }
   .dao-container {
-    @apply tablet:py-42 bg-khaki-90 desktop:py-52 flex min-h-screen w-full flex-col justify-start px-6 py-24;
+    @apply flex min-h-screen w-full flex-col justify-start bg-khaki-90 px-6 py-24 tablet:py-42 desktop:py-52;
   }
   .dao-section {
-    @apply tablet:gap-9 desktop:gap-12 mx-auto flex w-full max-w-[912px] flex-col gap-6;
+    @apply mx-auto flex w-full max-w-[912px] flex-col gap-6 tablet:gap-9 desktop:gap-12;
   }
   .proposal-card {
-    @apply tablet:p-6 flex h-[145px] w-full cursor-pointer flex-col justify-between gap-1 rounded-[32px] bg-white p-5;
+    @apply flex h-[145px] w-full cursor-pointer flex-col justify-between gap-1 rounded-4xl bg-white p-5 tablet:p-6;
   }
 
   /* Display / Hero text variants */
   .display-48 {
-    @apply tablet:text-4xl desktop:text-5xl text-3xl leading-tight font-medium;
+    @apply text-3xl leading-tight font-medium tablet:text-4xl desktop:text-5xl;
   }
 
   .display-72 {
-    @apply tablet:text-[56px] desktop:text-[72px] text-[32px] leading-tight font-medium;
+    @apply text-[32px] leading-tight font-medium tablet:text-[56px] desktop:text-[72px];
   }
 
   .display-96 {
-    @apply tablet:text-[64px] desktop:text-[96px] text-5xl leading-tight font-medium;
+    @apply text-5xl leading-tight font-medium tablet:text-[64px] desktop:text-[96px];
   }
 }
 

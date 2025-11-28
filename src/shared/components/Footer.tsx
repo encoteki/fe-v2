@@ -43,11 +43,11 @@ export default function Footer() {
   const copyright = `Encoteki © ${currentYear} All rights reserved`
 
   return (
-    <footer className="bg-primary-green tablet:rounded-t-[48px] tablet:px-32 desktop:px-32 desktop:py-48 mx-auto w-full rounded-t-3xl px-16 py-16">
-      <div className="tablet:flex-row tablet:justify-between flex h-auto flex-col">
+    <footer className="mx-auto w-full rounded-t-3xl bg-primary-green px-16 py-16 tablet:rounded-t-[48px] tablet:px-32 desktop:px-32 desktop:py-48">
+      <div className="flex h-auto flex-col tablet:flex-row tablet:justify-between">
         {/* Left Content */}
-        <section className="tablet:mb-0 tablet:w-1/2 tablet:justify-between tablet:gap-10 mb-14 flex flex-col gap-4">
-          <h1 className="desktop:text-4xl text-xl font-medium text-white">
+        <section className="mb-14 flex flex-col gap-4 tablet:mb-0 tablet:w-1/2 tablet:justify-between tablet:gap-10">
+          <h1 className="text-xl font-medium text-white desktop:text-4xl">
             {title}
           </h1>
           <div className="flex gap-9">
@@ -68,8 +68,8 @@ export default function Footer() {
 
         {/* Right Content */}
         {pathname === '/' ? (
-          <div className="tablet:w-1/2 flex flex-col justify-end text-right">
-            <p className="tablet:text-right text-left text-sm font-normal text-white">
+          <div className="flex flex-col justify-end text-right tablet:w-1/2">
+            <p className="text-left text-sm font-normal text-white tablet:text-right">
               {copyright}
             </p>
           </div>

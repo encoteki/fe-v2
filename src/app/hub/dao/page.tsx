@@ -35,7 +35,7 @@ export default function DaoPage() {
   return (
     <main className="dao-container">
       <div className="dao-section">
-        <header className="tablet:space-y-4 space-y-2">
+        <header className="space-y-2 tablet:space-y-4">
           <Breadcrumbs items={links} />
           <p className="display-48">Encoteki DAO</p>
           <h4 className="font-normal">

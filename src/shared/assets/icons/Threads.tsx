@@ -8,7 +8,7 @@ export default function ThreadsIcon({
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="tablet:h-8 tablet:w-8 h-6 w-6"
+      className="h-6 w-6 tablet:h-8 tablet:w-8"
       width={size}
       height={size}
       fill={colors}

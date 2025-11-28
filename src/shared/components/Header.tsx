@@ -28,10 +28,8 @@ const hubNavs = [
 ]
 
 export default function Header() {
-  // 1. Buat state untuk melacak apakah sudah di browser
   const [mounted, setMounted] = useState(false)
 
-  // 2. Set true hanya setelah useEffect berjalan (artinya sudah di browser)
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -44,8 +42,8 @@ export default function Header() {
     <nav
       className={`${isHome ? 'fixed' : 'absolute'} top-0 right-0 left-0 z-50 bg-transparent`}
     >
-      <div className="tablet:pt-6 desktop:px-8 flex w-full items-center justify-between px-4 pt-4">
-        <section className="flex items-center gap-4 md:w-[200px]">
+      <div className="relative flex w-full items-center justify-between px-4 pt-4 tablet:pt-6 desktop:px-8">
+        <section className="relative z-10 flex items-center gap-4 md:w-[200px]">
           {isHome && <HamburgerMenu items={homeNavs} />}
           {isHub && <HamburgerMenu items={hubNavs} />}
 
@@ -59,36 +57,28 @@ export default function Header() {
           </Link>
         </section>
 
-        <>
+        <div className="absolute left-1/2 -translate-x-1/2 transform">
           {isHome && <HomeNav items={homeNavs} />}
           {isHub && (
             <HubNav items={hubNavs.filter((nav) => nav.label !== 'Home')} />
           )}
-        </>
+        </div>
 
-        {isHome && (
-          <section className="text-right md:w-[200px]">
+        <section className="relative z-10 text-right">
+          {isHome && (
             <DefaultButton
               onClick={() => (window.location.href = URL_ROUTES.MINT)}
-              classname="text-sm md:text-base font-medium "
+              classname="text-sm md:text-base font-medium"
             >
               Launch App
             </DefaultButton>
-          </section>
-        )}
-        {isHub && (
-          // <section className="text-right md:w-[200px]">
-          //   <WalletSidebar />
-          // </section>
-          <>
-            {mounted ? (
-              <ConnectButton />
-            ) : (
-              // Opsional: Tampilkan tombol loading/kosong agar layout tidak bergeser
-              <div className="h-10 w-[150px]" />
-            )}
-          </>
-        )}
+          )}
+          {isHub && (
+            <>
+              {mounted ? <ConnectButton /> : <div className="h-10 w-[150px]" />}
+            </>
+          )}
+        </section>
       </div>
     </nav>
   )

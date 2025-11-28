@@ -93,7 +93,7 @@ export default function Roadmap() {
                 threshold={0.2}
               >
                 <div
-                  className="tablet:h-[400px] h-[500px] w-full overflow-hidden rounded-4xl"
+                  className="h-[500px] w-full overflow-hidden rounded-4xl tablet:h-[400px]"
                   style={{ backgroundColor: item.colors.primary }}
                 >
                   <div className="relative flex h-full">
@@ -105,7 +105,7 @@ export default function Roadmap() {
                       threshold={0.35}
                     >
                       <div
-                        className="tablet:flex-row tablet:justify-between tablet:p-8 flex h-full w-full flex-col items-center justify-center gap-4 rounded-r-4xl p-6"
+                        className="flex h-full w-full flex-col items-center justify-center gap-4 rounded-r-4xl p-6 tablet:flex-row tablet:justify-between tablet:p-8"
                         style={{ backgroundColor: item.colors.secondary }}
                       >
                         <Reveal
@@ -129,8 +129,8 @@ export default function Roadmap() {
                       </div>
                     </Reveal>
                     {/* Right block */}
-                    <div className="tablet:p-8 flex h-full w-3/5 flex-col justify-center-safe p-4">
-                      <ul className="tablet:text-lg list-disc space-y-2 pl-5 text-sm font-medium text-gray-700">
+                    <div className="flex h-full w-3/5 flex-col justify-center-safe p-4 tablet:p-8">
+                      <ul className="list-disc space-y-2 pl-5 text-sm font-medium text-gray-700 tablet:text-lg">
                         {item.description.map((point, i) => (
                           <Reveal
                             key={i}

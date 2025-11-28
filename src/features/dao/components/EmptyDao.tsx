@@ -9,7 +9,7 @@ export default function EmptyDao() {
         alt="alt"
         width={256}
         height={256}
-        className="tablet:size-64 size-32"
+        className="size-32 tablet:size-64"
       />
       <h2 className="font-medium">No proposals available</h2>
       <p className="text-neutral-30">

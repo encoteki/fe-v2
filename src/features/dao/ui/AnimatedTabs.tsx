@@ -50,14 +50,14 @@ export const AnimatedTabs = ({ items, classname }: AnimatedTabsProps) => {
               } as React.CSSProperties
             }
             className={cn(
-              'tablet:min-w-32 tablet:px-6 tablet:py-3 relative min-w-24 flex-1 rounded-full px-4 py-2 font-normal text-gray-400',
-              isActive && 'text-[var(--tab-secondary)]',
+              'relative min-w-24 flex-1 rounded-full px-4 py-2 font-normal text-gray-400 tablet:min-w-32 tablet:px-6 tablet:py-3',
+              isActive && 'text-(--tab-secondary)',
             )}
           >
             {isActive && (
               <motion.span
                 layoutId="active-pill"
-                className="pointer-events-none absolute inset-0 z-0 rounded-full bg-[var(--tab-primary)]"
+                className="pointer-events-none absolute inset-0 z-0 rounded-full bg-(--tab-primary)"
                 transition={{
                   type: 'spring',
                   stiffness: 500,

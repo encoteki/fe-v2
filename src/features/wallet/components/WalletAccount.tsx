@@ -37,7 +37,7 @@ export default function WalletAccount() {
   return (
     <>
       <div className="grid flex-1 auto-rows-min gap-6 px-6 py-18">
-        <div className="bg-khaki-70 flex items-center gap-4 rounded-2xl p-4 shadow-lg">
+        <div className="flex items-center gap-4 rounded-2xl bg-khaki-70 p-4 shadow-lg">
           <GlareMovingCard>
             <Image src={Metamask} alt="alt" width={25} height={25} />
           </GlareMovingCard>
