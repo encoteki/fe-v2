@@ -5,11 +5,10 @@ import React, {
   Dispatch,
   SetStateAction,
 } from 'react'
-import { Status } from '../contants/StatusEnum'
+import { MintStatus } from '../contants/MintEnum'
+import { Token } from '@/shared/constants/payments'
 
 type MintContextType = {
-  // paymentMethod: string
-  // setPaymentMethod: Dispatch<SetStateAction<string>>
   // section: number
   // setSection: Dispatch<SetStateAction<number>>
 
@@ -20,8 +19,11 @@ type MintContextType = {
   // hash: any
   // setHash: Dispatch<SetStateAction<any | null>>
 
-  status: Status | null
-  setStatus: Dispatch<SetStateAction<Status | null>>
+  paymentMethod: Token | null
+  setPaymentMethod: Dispatch<SetStateAction<Token | null>>
+
+  status: MintStatus | null
+  setStatus: Dispatch<SetStateAction<MintStatus | null>>
 }
 
 const MintContext = createContext<MintContextType | undefined>(undefined)
@@ -29,19 +31,17 @@ const MintContext = createContext<MintContextType | undefined>(undefined)
 export const MintProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  // const [paymentMethod, setPaymentMethod] = useState('')
   // const [section, setSection] = useState(0)
   // const [isSufficientFund, setIsSufficientFund] = useState(true)
   // const [txSuccess, setTxSuccess] = useState(false)
   // const [hash, setHash] = useState<any | null>(null)
 
-  const [status, setStatus] = useState<Status | null>(null)
+  const [paymentMethod, setPaymentMethod] = useState<Token | null>(null)
+  const [status, setStatus] = useState<MintStatus | null>(null)
 
   return (
     <MintContext.Provider
       value={{
-        // paymentMethod,
-        // setPaymentMethod,
         // section,
         // setSection,
         // isSufficientFund,
@@ -50,6 +50,8 @@ export const MintProvider: React.FC<{ children: React.ReactNode }> = ({
         // setTxSuccess,
         // hash,
         // setHash,
+        paymentMethod,
+        setPaymentMethod,
         status,
         setStatus,
       }}

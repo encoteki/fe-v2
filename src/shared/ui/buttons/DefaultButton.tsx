@@ -20,7 +20,7 @@ export default function DefaultButton({
       className={`rounded-full px-4 py-3 transition-all duration-300 hover:scale-105 tablet:px-6 desktop:px-6 desktop:py-3 ${classname} ${
         variant === 'primary'
           ? 'bg-primary-green text-white hover:bg-green-10'
-          : 'bg-white text-primary-green'
+          : 'border border-primary-green/10 bg-white text-primary-green hover:bg-primary-green/10'
       } disabled:cursor-default`}
     >
       {children}

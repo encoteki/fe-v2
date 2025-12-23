@@ -7,7 +7,7 @@ import Providers from '@/shared/providers/Providers'
 
 const outfit = Outfit({
   subsets: ['latin'],
-  weight: ['400', '500', '700'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -21,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${outfit.className} antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={outfit.className} suppressHydrationWarning>
         <div className="flex min-h-screen flex-col justify-between">
           <Providers>
             <Header />

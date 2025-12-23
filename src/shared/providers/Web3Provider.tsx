@@ -9,6 +9,7 @@ import {
   baseSepolia,
   liskSepolia,
   mantaSepoliaTestnet,
+  optimismSepolia,
 } from 'viem/chains'
 
 const walletConnectProjectId =
@@ -24,7 +25,13 @@ const config = defaultConfig({
   walletConnectProjectId,
   xellarAppId,
   xellarEnv: 'sandbox',
-  chains: [baseSepolia, liskSepolia, arbitrumSepolia, mantaSepoliaTestnet],
+  chains: [
+    baseSepolia,
+    liskSepolia,
+    arbitrumSepolia,
+    mantaSepoliaTestnet,
+    optimismSepolia,
+  ],
 }) as Config
 
 const queryClient = new QueryClient()

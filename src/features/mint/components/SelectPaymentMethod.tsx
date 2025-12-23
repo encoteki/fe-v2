@@ -1,78 +1,92 @@
 'use client'
 
-import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useChainId } from 'wagmi'
 import DefaultButton from '@/shared/ui/buttons/DefaultButton'
 import { useMintCtx } from '../context/MintContext'
-import { Status } from '../contants/StatusEnum'
-import {
-  PAYMENT_ETH,
-  PAYMENT_IDRX,
-  PAYMENT_USDC,
-  PaymentMethod,
-} from '../contants/paymentMethods'
-
-export const paymentMethods: PaymentMethod[] = [
-  PAYMENT_ETH,
-  PAYMENT_USDC,
-  PAYMENT_IDRX,
-]
+import { getPaymentMethods, Token } from '@/shared/constants/payments'
+import { PaymentCard } from './PaymentCard'
+import { Skeleton } from '@/shared/ui/Skeleton'
+import { CHAIN_IDS } from '@/shared/constants/networks'
 
 export default function SelectPaymentMethod() {
-  const { setStatus } = useMintCtx()
+  const [loading, setLoading] = useState<boolean>(true)
   const [activeIdx, setActiveIdx] = useState<number>(0)
+  const [paymentMethods, setPaymentMethods] = useState<Token[]>(
+    getPaymentMethods(CHAIN_IDS.BASE),
+  )
 
-  const onChangePayment = (index: number) => {
-    setActiveIdx(index)
-  }
+  const chainId = useChainId()
+  useEffect(() => {
+    setLoading(true)
+
+    const methods = getPaymentMethods(chainId)
+    setPaymentMethods(methods)
+    setActiveIdx(0)
+
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 300)
+
+    return () => clearTimeout(timer)
+  }, [chainId])
+
+  const { setPaymentMethod } = useMintCtx()
 
   const onClickMint = () => {
-    setStatus(Status.PENDING)
+    setPaymentMethod(paymentMethods[activeIdx])
   }
 
   return (
     <>
-      <div className="text-left">
+      <div className="mb-4 text-left">
         <h3 className="font-medium">Payment methods</h3>
-        <p className="text-neutral-40 text-sm">
+        <p className="text-sm text-neutral-400">
           Please select a payment method
         </p>
       </div>
-      <div className="tablet:gap-4 flex flex-col gap-2">
-        {paymentMethods.map((item, idx) => {
-          return (
-            <button
-              onClick={() => onChangePayment(idx)}
-              key={idx}
-              className={`tablet:p-3 flex items-center justify-between rounded-2xl border p-2 transition-colors ${activeIdx === idx ? `${item.color} border-white` : 'border-gray-200'}`}
+
+      <div className="mb-6 flex flex-col gap-2 tablet:gap-4">
+        {loading ? (
+          Array.from({ length: 4 }).map((_, i) => (
+            <div
+              key={i}
+              className="flex items-center justify-between rounded-2xl border border-gray-100 bg-white p-2 tablet:p-3"
             >
               <div className="flex flex-1 flex-col items-start gap-1">
-                <div className="tablet:gap-3 flex gap-2 font-medium">
-                  <Image
-                    src={item.icon}
-                    alt="alt"
-                    width={25}
-                    height={25}
-                    className="size-[25px] rounded-full"
-                    priority
-                  />{' '}
-                  <p className="tablet:text-lg text-base"> {item.name}</p>
+                <div className="flex items-center gap-2 tablet:gap-3">
+                  <Skeleton className="size-[25px] shrink-0 rounded-full" />
+                  <Skeleton className="h-5 w-24 rounded" />
                 </div>
-
-                <p className="tablet:text-xs text-[10px] text-gray-400">
-                  Balance: 0.001 {item.name}
-                </p>
               </div>
 
               <div className="flex flex-1 items-end justify-end gap-2">
-                <p>{item.cost}</p>
-                <p>{item.name}</p>
+                <Skeleton className="h-5 w-16 rounded" />
               </div>
-            </button>
-          )
-        })}
+            </div>
+          ))
+        ) : paymentMethods.length > 0 ? (
+          paymentMethods.map((item: Token, idx) => (
+            <PaymentCard
+              key={`${item.address}-${idx}`}
+              item={item}
+              isActive={activeIdx === idx}
+              onClick={() => setActiveIdx(idx)}
+            />
+          ))
+        ) : (
+          <div className="rounded-xl border border-dashed bg-gray-50 p-4 text-center text-sm text-gray-500">
+            Not available on Chain ID: {chainId}
+          </div>
+        )}
       </div>
-      <DefaultButton onClick={onClickMint}>Mint</DefaultButton>
+
+      <DefaultButton
+        onClick={onClickMint}
+        disabled={loading || paymentMethods.length === 0}
+      >
+        Mint
+      </DefaultButton>
     </>
   )
 }

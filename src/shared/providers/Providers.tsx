@@ -9,8 +9,8 @@ export default function Providers({
   children: React.ReactNode
 }>) {
   return (
-    <AppProvider>
-      <Web3Provider>{children}</Web3Provider>
-    </AppProvider>
+    <Web3Provider>
+      <AppProvider>{children}</AppProvider>
+    </Web3Provider>
   )
 }
