@@ -35,7 +35,7 @@ html {
     @apply mx-auto w-full bg-khaki-90 px-8 py-24 shadow-xl tablet:min-h-screen tablet:px-16 tablet:py-32;
   }
   .home-container {
-    @apply mx-auto w-full max-w-[1440px] px-4 py-18 tablet:px-8 tablet:py-24 desktop:py-32;
+    @apply mx-auto w-full max-w-360 px-4 py-18 tablet:px-8 tablet:py-24 desktop:py-32;
   }
   .bento-card {
     @apply h-full rounded-2xl border border-primary-green/40 bg-khaki-99 p-4 tablet:rounded-4xl tablet:border-2 tablet:p-8;
@@ -45,7 +45,7 @@ html {
     @apply flex min-h-screen w-full flex-col justify-center bg-khaki-90 px-12 py-16 tablet:py-24 desktop:py-42;
   }
   .mint-modal {
-    @apply mx-auto flex w-full max-w-[400px] flex-col justify-between gap-2 rounded-4xl bg-white p-5 shadow-lg tablet:h-[500px] tablet:w-[400px] tablet:gap-4 tablet:p-6;
+    @apply mx-auto flex w-full max-w-100 flex-col justify-between gap-2 rounded-4xl bg-white p-5 shadow-lg tablet:h-125 tablet:w-100 tablet:gap-4 tablet:p-6;
   }
   .payment-card {
     @apply flex items-center justify-between rounded-2xl border p-2 tablet:p-3;
@@ -54,10 +54,10 @@ html {
     @apply flex min-h-screen w-full flex-col justify-start bg-khaki-90 px-6 py-24 tablet:py-42 desktop:py-52;
   }
   .dao-section {
-    @apply mx-auto flex w-full max-w-[912px] flex-col gap-6 tablet:gap-9 desktop:gap-12;
+    @apply mx-auto flex w-full max-w-228 flex-col gap-6 tablet:gap-9 desktop:gap-12;
   }
   .proposal-card {
-    @apply flex h-[145px] w-full cursor-pointer flex-col justify-between gap-1 rounded-4xl bg-white p-5 tablet:p-6;
+    @apply flex h-36.25 w-full cursor-pointer flex-col justify-between gap-1 rounded-4xl bg-white p-5 tablet:p-6;
   }
 
   /* Display / Hero text variants */
@@ -136,7 +136,7 @@ html {
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: #f6f6ec;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);

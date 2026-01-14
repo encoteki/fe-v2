@@ -2,12 +2,12 @@
 
 import { useAppCtx } from '@/shared/context/AppContext'
 import { cn } from '@/lib/utils'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { NavProps } from '@/shared/types/nav'
 
-export const HubNav = ({ items }: { items: NavProps[] }) => {
+export const AppNav = ({ items }: { items: NavProps[] }) => {
   const { activeIdx, setActiveIdx } = useAppCtx()
   const router = useRouter()
   const pathname = usePathname()

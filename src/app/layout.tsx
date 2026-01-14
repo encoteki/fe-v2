@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import { Outfit } from 'next/font/google'
 import './globals.css'
-import Header from '@/shared/components/Header'
-import Footer from '@/shared/components/Footer'
 import Providers from '@/shared/providers/Providers'
 
 const outfit = Outfit({
@@ -24,11 +22,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={outfit.className} suppressHydrationWarning>
         <div className="flex min-h-screen flex-col justify-between">
-          <Providers>
-            <Header />
-            {children}
-            <Footer />
-          </Providers>
+          <Providers>{children}</Providers>
         </div>
       </body>
     </html>
