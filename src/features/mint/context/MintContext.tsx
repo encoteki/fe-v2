@@ -7,23 +7,17 @@ import React, {
 } from 'react'
 import { MintStatus } from '../contants/MintEnum'
 import { Token } from '@/shared/constants/payments'
+import { Address } from 'viem'
 
 type MintContextType = {
-  // section: number
-  // setSection: Dispatch<SetStateAction<number>>
-
-  // isSufficientFund: boolean
-  // setIsSufficientFund: Dispatch<SetStateAction<boolean>>
-  // txSuccess: boolean
-  // setTxSuccess: Dispatch<SetStateAction<boolean>>
-  // hash: any
-  // setHash: Dispatch<SetStateAction<any | null>>
-
   paymentMethod: Token | null
   setPaymentMethod: Dispatch<SetStateAction<Token | null>>
 
-  status: MintStatus | null
-  setStatus: Dispatch<SetStateAction<MintStatus | null>>
+  targetContract: Address | null
+  setTargetContract: Dispatch<SetStateAction<Address | null>>
+
+  status: MintStatus
+  setStatus: Dispatch<SetStateAction<MintStatus>>
 }
 
 const MintContext = createContext<MintContextType | undefined>(undefined)
@@ -31,27 +25,17 @@ const MintContext = createContext<MintContextType | undefined>(undefined)
 export const MintProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  // const [section, setSection] = useState(0)
-  // const [isSufficientFund, setIsSufficientFund] = useState(true)
-  // const [txSuccess, setTxSuccess] = useState(false)
-  // const [hash, setHash] = useState<any | null>(null)
-
   const [paymentMethod, setPaymentMethod] = useState<Token | null>(null)
-  const [status, setStatus] = useState<MintStatus | null>(null)
+  const [targetContract, setTargetContract] = useState<Address | null>(null)
+  const [status, setStatus] = useState<MintStatus>(MintStatus.HOME)
 
   return (
     <MintContext.Provider
       value={{
-        // section,
-        // setSection,
-        // isSufficientFund,
-        // setIsSufficientFund,
-        // txSuccess,
-        // setTxSuccess,
-        // hash,
-        // setHash,
         paymentMethod,
         setPaymentMethod,
+        targetContract,
+        setTargetContract,
         status,
         setStatus,
       }}

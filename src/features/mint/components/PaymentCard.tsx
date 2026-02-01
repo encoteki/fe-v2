@@ -25,9 +25,11 @@ export const PaymentCard = ({ item, isActive, onClick }: PaymentCardProps) => {
             alt={item.name}
             width={25}
             height={25}
-            className="size-[25px] rounded-full object-cover"
+            className="size-6.25 rounded-full object-cover"
           />
-          <p className="text-base text-gray-900 tablet:text-lg">{item.name}</p>
+          <p className="text-base text-gray-900 tablet:text-lg">
+            {item.symbol}
+          </p>
         </div>
       </div>
 

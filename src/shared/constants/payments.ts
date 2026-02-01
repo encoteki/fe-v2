@@ -1,5 +1,7 @@
 import { StaticImageData } from 'next/image'
+import { Hex } from 'viem'
 
+// Assets
 import ETHIcon from '@/shared/assets/icons/tokens/eth.webp'
 import IDRXIcon from '@/shared/assets/icons/tokens/idrx.webp'
 import LSKIcon from '@/shared/assets/icons/tokens/lisk.webp'
@@ -7,162 +9,259 @@ import USDCIcon from '@/shared/assets/icons/tokens/usdc.png'
 import USDTIcon from '@/shared/assets/icons/tokens/tether.svg'
 import ARBIcon from '@/shared/assets/icons/tokens/arb.svg'
 import MANTAIcon from '@/shared/assets/icons/tokens/manta.png'
-import { CONTRACT_ADDRESSES } from './addresses'
-import { Hex } from 'viem'
 
-export interface Token {
-  symbol: string
+export const CHAIN_IDS = {
+  BASE: {
+    MAINNET: 8453,
+    SEPOLIA: 84532,
+  },
+  LISK: {
+    MAINNET: 1135,
+    SEPOLIA: 4202,
+  },
+  ARBITRUM: {
+    ONE: 42161,
+    SEPOLIA: 421614,
+  },
+  MANTA: {
+    PACIFIC: 169,
+    TESTNET: 3441006,
+  },
+} as const
+
+// ============================================
+// 1. TYPE DEFINITIONS
+// ============================================
+
+export type TokenSymbol =
+  | 'ETH'
+  | 'USDC'
+  | 'USDT'
+  | 'IDRX'
+  | 'LSK'
+  | 'ARB'
+  | 'MANTA'
+
+// Static data (Name, Logo, Decimals)
+export interface TokenMetadata {
+  symbol: TokenSymbol
   name: string
   decimals: number
   logo: StaticImageData
-  cost: number
-  address: Hex
   isNative?: boolean
 }
 
-export type TokenMetadata = Omit<Token, 'address'>
-
-export const ETH: TokenMetadata = {
-  symbol: 'ETH',
-  name: 'ETH',
-  decimals: 18,
-  logo: ETHIcon,
-  cost: 0.01,
-  isNative: true,
+// Full object used by UI (includes Cost + Chain Data)
+export interface Token extends TokenMetadata {
+  cost: number
+  address: Hex
+  chainId: number
 }
 
-export const LSK: TokenMetadata = {
-  symbol: 'LSK',
-  name: 'LSK',
-  decimals: 18,
-  logo: LSKIcon,
-  cost: 40,
-  isNative: false,
+// ============================================
+// 2. PRICING CONFIGURATION (BUSINESS LOGIC)
+// ============================================
+
+/**
+ * Manage all minting costs here.
+ * Easy to read and update without touching code logic.
+ */
+export const MINT_PRICES: Record<TokenSymbol, number> = {
+  ETH: 0.01,
+  LSK: 40,
+  ARB: 5,
+  MANTA: 300,
+  USDC: 20,
+  USDT: 20,
+  IDRX: 300000,
 }
 
-export const ARB: TokenMetadata = {
-  symbol: 'ARB',
-  name: 'ARB',
-  decimals: 18,
-  logo: ARBIcon,
-  cost: 5,
-  isNative: false,
+// ============================================
+// 3. STATIC METADATA (IMMUTABLE)
+// ============================================
+
+const TOKENS_META: Record<TokenSymbol, TokenMetadata> = {
+  ETH: {
+    symbol: 'ETH',
+    name: 'Ether',
+    decimals: 18,
+    logo: ETHIcon,
+    isNative: true,
+  },
+  USDC: {
+    symbol: 'USDC',
+    name: 'USD Coin',
+    decimals: 6,
+    logo: USDCIcon,
+    isNative: false,
+  },
+  USDT: {
+    symbol: 'USDT',
+    name: 'Tether USD',
+    decimals: 6,
+    logo: USDTIcon,
+    isNative: false,
+  },
+  IDRX: {
+    symbol: 'IDRX',
+    name: 'IDR Token',
+    decimals: 2,
+    logo: IDRXIcon,
+    isNative: false,
+  },
+  LSK: {
+    symbol: 'LSK',
+    name: 'Lisk',
+    decimals: 18,
+    logo: LSKIcon,
+    isNative: false,
+  },
+  ARB: {
+    symbol: 'ARB',
+    name: 'Arbitrum',
+    decimals: 18,
+    logo: ARBIcon,
+    isNative: false,
+  },
+  MANTA: {
+    symbol: 'MANTA',
+    name: 'Manta Token',
+    decimals: 18,
+    logo: MANTAIcon,
+    isNative: false,
+  },
 }
 
-export const MANTA: TokenMetadata = {
-  symbol: 'MANTA',
-  name: 'MANTA',
-  decimals: 18,
-  logo: MANTAIcon,
-  cost: 300,
-  isNative: false,
+// ============================================
+// 4. ADDRESS REGISTRY
+// ============================================
+
+const ZERO_ADDRESS: Hex = '0x0000000000000000000000000000000000000000'
+
+const ADDRESS_BOOK: Record<number, Partial<Record<TokenSymbol, Hex>>> = {
+  // --- BASE ---
+  [CHAIN_IDS.BASE.SEPOLIA]: {
+    ETH: ZERO_ADDRESS,
+    USDC: '0x0',
+    USDT: '0x0',
+    IDRX: '0x0',
+  },
+  [CHAIN_IDS.BASE.MAINNET]: {
+    ETH: ZERO_ADDRESS,
+    USDC: '0x0',
+    USDT: '0x0',
+    IDRX: '0x0',
+  },
+
+  // --- LISK ---
+  [CHAIN_IDS.LISK.SEPOLIA]: {
+    ETH: ZERO_ADDRESS,
+    LSK: '0x0',
+    USDT: '0x0',
+    IDRX: '0x0',
+  },
+  [CHAIN_IDS.LISK.MAINNET]: {
+    ETH: ZERO_ADDRESS,
+    LSK: '0x0',
+    USDT: '0x0',
+    IDRX: '0x0',
+  },
+
+  // --- ARBITRUM ---
+  [CHAIN_IDS.ARBITRUM.SEPOLIA]: {
+    ETH: ZERO_ADDRESS,
+    ARB: '0x0',
+    USDC: '0x0',
+    USDT: '0x0',
+  },
+  [CHAIN_IDS.ARBITRUM.ONE]: {
+    ETH: ZERO_ADDRESS,
+    ARB: '0x0',
+    USDC: '0x0',
+    USDT: '0x0',
+  },
+
+  // --- MANTA ---
+  [CHAIN_IDS.MANTA.TESTNET]: {
+    ETH: ZERO_ADDRESS,
+    MANTA: '0x0',
+    USDC: '0x0',
+    USDT: '0x0',
+  },
+  [CHAIN_IDS.MANTA.PACIFIC]: {
+    ETH: ZERO_ADDRESS,
+    MANTA: '0x0',
+    USDC: '0x0',
+    USDT: '0x0',
+  },
 }
 
-export const USDC: TokenMetadata = {
-  symbol: 'USDC',
-  name: 'USDC',
-  decimals: 6,
-  logo: USDCIcon,
-  cost: 20,
-  isNative: false,
-}
+// ============================================
+// 5. CONFIGURATION
+// ============================================
 
-export const USDT: TokenMetadata = {
-  symbol: 'USDT',
-  name: 'USDT',
-  decimals: 6,
-  logo: USDTIcon,
-  cost: 20,
-  isNative: false,
-}
+const APP_ENV = process.env.NEXT_PUBLIC_APP_ENV || 'development'
+const IS_PRODUCTION = APP_ENV === 'production'
 
-export const IDRX: TokenMetadata = {
-  symbol: 'IDRX',
-  name: 'IDRX',
-  decimals: 2,
-  logo: IDRXIcon,
-  cost: 300000,
-  isNative: false,
-}
+const NETWORKS = [
+  {
+    key: 'BASE',
+    mainnet: CHAIN_IDS.BASE.MAINNET,
+    testnet: CHAIN_IDS.BASE.SEPOLIA,
+    tokens: ['ETH', 'USDC'] as TokenSymbol[],
+  },
+  {
+    key: 'LISK',
+    mainnet: CHAIN_IDS.LISK.MAINNET,
+    testnet: CHAIN_IDS.LISK.SEPOLIA,
+    tokens: ['ETH', 'LSK'] as TokenSymbol[],
+  },
+  {
+    key: 'ARBITRUM',
+    mainnet: CHAIN_IDS.ARBITRUM.ONE,
+    testnet: CHAIN_IDS.ARBITRUM.SEPOLIA,
+    tokens: ['ETH', 'ARB'] as TokenSymbol[],
+  },
+  {
+    key: 'MANTA',
+    mainnet: CHAIN_IDS.MANTA.PACIFIC,
+    testnet: CHAIN_IDS.MANTA.TESTNET,
+    tokens: ['ETH', 'MANTA'] as TokenSymbol[],
+  },
+]
 
-export const createToken = (meta: TokenMetadata, chainId: number): Token => {
-  const addressesOnChain = CONTRACT_ADDRESSES[chainId]
+// ============================================
+// 6. GENERATOR LOGIC
+// ============================================
 
-  const address =
-    addressesOnChain?.[meta.symbol] ||
-    '0x0000000000000000000000000000000000000000'
+export const PAYMENT_METHODS_MAP: Record<number, Token[]> = NETWORKS.reduce(
+  (acc, network) => {
+    const activeChainId = IS_PRODUCTION ? network.mainnet : network.testnet
 
-  return {
-    ...meta,
-    address: address as Hex,
-  }
-}
+    const chainTokens = network.tokens.map((symbol) => {
+      const meta = TOKENS_META[symbol]
+      const price = MINT_PRICES[symbol] // Fetch price from config
+      const address = ADDRESS_BOOK[activeChainId]?.[symbol]
 
-export const PAYMENT_METHODS_MAP: Record<number, Token[]> = {
-  // -------------------------
-  // 🔵 BASE
-  // -------------------------
-  84532: [
-    createToken(ETH, 84532),
-    createToken(USDC, 84532),
-    createToken(USDT, 84532),
-    createToken(IDRX, 84532),
-  ],
-  8453: [
-    createToken(ETH, 8453),
-    createToken(USDC, 8453),
-    createToken(USDT, 8453),
-    createToken(IDRX, 8453),
-  ],
+      if (!address && !IS_PRODUCTION) {
+        console.warn(
+          `[PaymentConfig] Missing address for ${symbol} on chain ${activeChainId}`,
+        )
+      }
 
-  // -------------------------
-  // 🟣 LISK
-  // -------------------------
-  4202: [
-    createToken(ETH, 4202),
-    createToken(LSK, 4202),
-    createToken(USDT, 4202),
-    createToken(IDRX, 4202),
-  ],
-  1135: [
-    createToken(ETH, 1135),
-    createToken(LSK, 1135),
-    createToken(USDT, 1135),
-    createToken(IDRX, 1135),
-  ],
+      return {
+        ...meta,
+        cost: price,
+        chainId: activeChainId,
+        address: address || ZERO_ADDRESS,
+      }
+    })
 
-  // -------------------------
-  // 🔴 ARBITRUM
-  // -------------------------
-  421614: [
-    createToken(ETH, 421614),
-    createToken(ARB, 421614),
-    createToken(USDC, 421614),
-    createToken(USDT, 421614),
-  ],
-  42161: [
-    createToken(ETH, 42161),
-    createToken(ARB, 42161),
-    createToken(USDC, 42161),
-    createToken(USDT, 42161),
-  ],
+    acc[activeChainId] = chainTokens
+    return acc
+  },
+  {} as Record<number, Token[]>,
+)
 
-  // -------------------------
-  // 🔵 MANTA
-  // -------------------------
-  3441006: [
-    createToken(ETH, 3441006),
-    createToken(MANTA, 3441006),
-    createToken(USDC, 3441006),
-    createToken(USDT, 3441006),
-  ],
-  169: [
-    createToken(ETH, 169),
-    createToken(MANTA, 169),
-    createToken(USDC, 169),
-    createToken(USDT, 169),
-  ],
-}
-
-export const getPaymentMethods = (chainId: number) =>
+export const getPaymentMethods = (chainId: number): Token[] =>
   PAYMENT_METHODS_MAP[chainId] || []

@@ -4,13 +4,7 @@ import React from 'react'
 import { Config, cookieStorage, createStorage, WagmiProvider } from 'wagmi'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { XellarKitProvider, defaultConfig, darkTheme } from '@xellar/kit'
-import {
-  arbitrumSepolia,
-  baseSepolia,
-  liskSepolia,
-  mantaSepoliaTestnet,
-  optimismSepolia,
-} from 'viem/chains'
+import { arbitrumSepolia, baseSepolia } from 'viem/chains'
 
 const walletConnectProjectId =
   process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || ''
@@ -25,13 +19,7 @@ const config = defaultConfig({
   walletConnectProjectId,
   xellarAppId,
   xellarEnv: 'sandbox',
-  chains: [
-    baseSepolia,
-    liskSepolia,
-    arbitrumSepolia,
-    mantaSepoliaTestnet,
-    optimismSepolia,
-  ],
+  chains: [baseSepolia, arbitrumSepolia],
 }) as Config
 
 const queryClient = new QueryClient()

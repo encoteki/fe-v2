@@ -6,17 +6,17 @@ import Hidden from '@/features/mint/assets/hidden.png'
 import { Token } from '@/shared/constants/payments'
 import { formatIDR } from '../utils/formatBalance'
 import { MintStatus } from '../contants/MintEnum'
+import { useEffect } from 'react'
+import { MintButton } from '../ui/mint-button'
 
 export default function ReviewTransaction() {
-  const { setPaymentMethod, paymentMethod, setStatus } = useMintCtx()
+  const { paymentMethod, setStatus, status, targetContract } = useMintCtx()
 
-  const onClickConfirm = async () => {
-    setStatus(MintStatus.PENDING)
-  }
+  useEffect(() => {
+    console.log(`payment address: ${paymentMethod?.address}`)
+    console.log('contract:', targetContract)
+  }, [])
 
-  const onClickCancel = () => {
-    setPaymentMethod(null)
-  }
   return (
     <>
       <div className="text-left">
@@ -29,11 +29,12 @@ export default function ReviewTransaction() {
       <TransactionCard item={paymentMethod!} />
 
       <div className="flex w-full flex-col">
-        {/* Network Fee */}
-        <div className="flex w-full justify-between">
-          <p className="text-gray-500">Network Fee</p>
-          <p className="text-gray-500">0.001 ETH</p>
-        </div>
+        {/* <TransactionQuote
+          contractAddress={tsbgmc.address as Address}
+          functionName="mintLocal"
+          abi={tsbgmc.abi as any}
+          args={[]}
+        /> */}
 
         {/* Total */}
         <div className="flex w-full justify-between">
@@ -48,16 +49,10 @@ export default function ReviewTransaction() {
       </div>
 
       <div className="grid gap-3">
-        <DefaultButton
-          onClick={onClickConfirm}
-          // disabled={loading || paymentMethods.length === 0}
-        >
-          Confirm Mint
-        </DefaultButton>
+        <MintButton />
         <DefaultButton
           variant="secondary"
-          onClick={onClickCancel}
-          // disabled={loading || paymentMethods.length === 0}
+          onClick={() => setStatus(MintStatus.HOME)}
         >
           Cancel
         </DefaultButton>

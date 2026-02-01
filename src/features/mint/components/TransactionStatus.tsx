@@ -119,15 +119,11 @@ export default function TransactionStatus({ status }: TransactionStatusProps) {
           transition={{ delay: 1.5, duration: 0.4 }}
         >
           {status === MintStatus.SUCCESS && (
-            <DefaultButton classname="w-full" onClick={() => setStatus(null)}>
-              View transaction
-            </DefaultButton>
+            <DefaultButton classname="w-full">View transaction</DefaultButton>
           )}
 
           {status === MintStatus.FAILED && (
-            <DefaultButton classname="w-full" onClick={() => setStatus(null)}>
-              Try again
-            </DefaultButton>
+            <DefaultButton classname="w-full">Try again</DefaultButton>
           )}
 
           <DefaultButton

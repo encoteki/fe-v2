@@ -1,12 +1,9 @@
-'use client'
-
 import Link from 'next/link'
 import Image from 'next/image'
 import Logo from '@/shared/assets/logos/logo.webp'
 import URL_ROUTES from '../constants/urlRoute'
-import { ConnectButton } from '@xellar/kit'
-import { useEffect, useState } from 'react'
 import { AppNav } from '../ui/navs/AppNav'
+import { CustomConnectButton } from './custom-connect-btn'
 
 const hubNavs = [
   { label: 'Home', id: URL_ROUTES.HOME },
@@ -15,12 +12,6 @@ const hubNavs = [
 ]
 
 export default function Header() {
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
   return (
     <nav className={`absolute top-0 right-0 left-0 z-50 bg-transparent`}>
       <div className="relative flex w-full items-center justify-between px-4 pt-4 tablet:pt-6 desktop:px-8">
@@ -40,7 +31,7 @@ export default function Header() {
         </div>
 
         <section className="relative z-10 text-right">
-          {mounted ? <ConnectButton /> : <div className="h-10 w-37.5" />}
+          <CustomConnectButton />
         </section>
       </div>
     </nav>
