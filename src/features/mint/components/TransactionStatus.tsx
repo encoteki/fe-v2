@@ -38,7 +38,7 @@ interface TransactionStatusProps {
 }
 
 export default function TransactionStatus({ status }: TransactionStatusProps) {
-  const { setStatus } = useMintCtx()
+  const { setStatus, hash } = useMintCtx()
   const [data, setData] = useState(state[0])
 
   // update current whenever status changes
@@ -46,17 +46,6 @@ export default function TransactionStatus({ status }: TransactionStatusProps) {
     const match = state.find((s) => s.status === status)
     if (match) setData(match)
   }, [status])
-
-  const changeStatus = () => {
-    // Get current index
-    const index = Object.values(MintStatus).indexOf(status)
-
-    // Compute next index, wrap around with modulo
-    const nextIndex = (index + 1) % Object.values(MintStatus).length
-
-    // Update to the next status
-    setStatus(Object.values(MintStatus)[nextIndex] as MintStatus)
-  }
 
   return (
     <>
@@ -71,10 +60,7 @@ export default function TransactionStatus({ status }: TransactionStatusProps) {
             }}
           />
 
-          <div
-            className="relative z-10 w-fit cursor-pointer rounded-full bg-white p-3 shadow-xs tablet:p-4"
-            onClick={changeStatus}
-          >
+          <div className="relative z-10 w-fit cursor-pointer rounded-full bg-white p-3 shadow-xs tablet:p-4">
             {status === MintStatus.PENDING && (
               <Clock size={60} color={data?.color} />
             )}
@@ -119,7 +105,9 @@ export default function TransactionStatus({ status }: TransactionStatusProps) {
           transition={{ delay: 1.5, duration: 0.4 }}
         >
           {status === MintStatus.SUCCESS && (
-            <DefaultButton classname="w-full">View transaction</DefaultButton>
+            <a href={hash ?? ''} target="_blank" rel="noopener noreferrer">
+              <DefaultButton classname="w-full">View transaction</DefaultButton>
+            </a>
           )}
 
           {status === MintStatus.FAILED && (
@@ -129,7 +117,7 @@ export default function TransactionStatus({ status }: TransactionStatusProps) {
           <DefaultButton
             variant={status === MintStatus.PENDING ? 'primary' : 'secondary'}
             disabled={status === MintStatus.PENDING ? true : false}
-            onClick={() => (window.location.href = '/')}
+            onClick={() => setStatus(MintStatus.HOME)}
           >
             {status === MintStatus.PENDING ? 'Minting' : 'Return home'}
           </DefaultButton>

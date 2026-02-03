@@ -18,6 +18,9 @@ type MintContextType = {
 
   status: MintStatus
   setStatus: Dispatch<SetStateAction<MintStatus>>
+
+  hash: string | null
+  setHash: Dispatch<SetStateAction<string | null>>
 }
 
 const MintContext = createContext<MintContextType | undefined>(undefined)
@@ -28,6 +31,7 @@ export const MintProvider: React.FC<{ children: React.ReactNode }> = ({
   const [paymentMethod, setPaymentMethod] = useState<Token | null>(null)
   const [targetContract, setTargetContract] = useState<Address | null>(null)
   const [status, setStatus] = useState<MintStatus>(MintStatus.HOME)
+  const [hash, setHash] = useState<string | null>(null)
 
   return (
     <MintContext.Provider
@@ -38,6 +42,8 @@ export const MintProvider: React.FC<{ children: React.ReactNode }> = ({
         setTargetContract,
         status,
         setStatus,
+        hash,
+        setHash,
       }}
     >
       {children}

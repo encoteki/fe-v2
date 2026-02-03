@@ -1,5 +1,5 @@
 import { StaticImageData } from 'next/image'
-import { Hex } from 'viem'
+import { Address, Hex } from 'viem'
 
 // Assets
 import ETHIcon from '@/shared/assets/icons/tokens/eth.webp'
@@ -67,12 +67,12 @@ export interface Token extends TokenMetadata {
  * Easy to read and update without touching code logic.
  */
 export const MINT_PRICES: Record<TokenSymbol, number> = {
-  ETH: 0.01,
+  ETH: 0.0001,
   LSK: 40,
   ARB: 5,
   MANTA: 300,
-  USDC: 20,
-  USDT: 20,
+  USDC: 1,
+  USDT: 1,
   IDRX: 300000,
 }
 
@@ -138,11 +138,11 @@ const TOKENS_META: Record<TokenSymbol, TokenMetadata> = {
 
 const ZERO_ADDRESS: Hex = '0x0000000000000000000000000000000000000000'
 
-const ADDRESS_BOOK: Record<number, Partial<Record<TokenSymbol, Hex>>> = {
+const ADDRESS_BOOK: Record<number, Partial<Record<TokenSymbol, Address>>> = {
   // --- BASE ---
   [CHAIN_IDS.BASE.SEPOLIA]: {
     ETH: ZERO_ADDRESS,
-    USDC: '0x0',
+    USDC: process.env.NEXT_PUBLIC_BASE_USDC_ADDRESS as Address,
     USDT: '0x0',
     IDRX: '0x0',
   },
@@ -151,6 +151,20 @@ const ADDRESS_BOOK: Record<number, Partial<Record<TokenSymbol, Hex>>> = {
     USDC: '0x0',
     USDT: '0x0',
     IDRX: '0x0',
+  },
+
+  // --- ARBITRUM ---
+  [CHAIN_IDS.ARBITRUM.SEPOLIA]: {
+    ETH: ZERO_ADDRESS,
+    ARB: '0x2F6EBFeA38047B8bBD8f9D689730F0889Bd6f13a',
+    USDC: process.env.NEXT_PUBLIC_ARBITRUM_USDC_ADDRESS as Address,
+    USDT: '0x0',
+  },
+  [CHAIN_IDS.ARBITRUM.ONE]: {
+    ETH: ZERO_ADDRESS,
+    ARB: '0x0',
+    USDC: '0x0',
+    USDT: '0x0',
   },
 
   // --- LISK ---
@@ -165,20 +179,6 @@ const ADDRESS_BOOK: Record<number, Partial<Record<TokenSymbol, Hex>>> = {
     LSK: '0x0',
     USDT: '0x0',
     IDRX: '0x0',
-  },
-
-  // --- ARBITRUM ---
-  [CHAIN_IDS.ARBITRUM.SEPOLIA]: {
-    ETH: ZERO_ADDRESS,
-    ARB: '0x0',
-    USDC: '0x0',
-    USDT: '0x0',
-  },
-  [CHAIN_IDS.ARBITRUM.ONE]: {
-    ETH: ZERO_ADDRESS,
-    ARB: '0x0',
-    USDC: '0x0',
-    USDT: '0x0',
   },
 
   // --- MANTA ---
@@ -220,7 +220,7 @@ const NETWORKS = [
     key: 'ARBITRUM',
     mainnet: CHAIN_IDS.ARBITRUM.ONE,
     testnet: CHAIN_IDS.ARBITRUM.SEPOLIA,
-    tokens: ['ETH', 'ARB'] as TokenSymbol[],
+    tokens: ['ETH', 'USDC'] as TokenSymbol[],
   },
   {
     key: 'MANTA',

@@ -4,14 +4,14 @@ import {
   useWaitForTransactionReceipt,
   type BaseError,
 } from 'wagmi'
-import { type Abi } from 'viem'
+import { Address, type Abi } from 'viem'
 
 type SimulateContractProps = {
   abi: Abi
-  address: `0x${string}`
+  address: Address
   functionName: string
   args?: any[]
-  value: bigint
+  value?: bigint
   query?: {
     enabled?: boolean
   }

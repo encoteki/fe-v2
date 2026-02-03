@@ -8,12 +8,14 @@ import { formatIDR } from '../utils/formatBalance'
 import { MintStatus } from '../contants/MintEnum'
 import { useEffect } from 'react'
 import { MintButton } from '../ui/mint-button'
+import { Address } from 'viem'
 
 export default function ReviewTransaction() {
-  const { paymentMethod, setStatus, status, targetContract } = useMintCtx()
+  const { paymentMethod, setStatus, targetContract } = useMintCtx()
 
   useEffect(() => {
     console.log(`payment address: ${paymentMethod?.address}`)
+    console.log(`payment cost: ${paymentMethod?.cost}`)
     console.log('contract:', targetContract)
   }, [])
 
@@ -29,13 +31,6 @@ export default function ReviewTransaction() {
       <TransactionCard item={paymentMethod!} />
 
       <div className="flex w-full flex-col">
-        {/* <TransactionQuote
-          contractAddress={tsbgmc.address as Address}
-          functionName="mintLocal"
-          abi={tsbgmc.abi as any}
-          args={[]}
-        /> */}
-
         {/* Total */}
         <div className="flex w-full justify-between">
           <p className="font-medium">Total</p>
@@ -49,7 +44,10 @@ export default function ReviewTransaction() {
       </div>
 
       <div className="grid gap-3">
-        <MintButton />
+        <MintButton
+          tokenAddress={paymentMethod?.address as Address}
+          price={paymentMethod?.cost?.toString() || '0'}
+        />
         <DefaultButton
           variant="secondary"
           onClick={() => setStatus(MintStatus.HOME)}
