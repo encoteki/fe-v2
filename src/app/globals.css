@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@config '../../tailwind.config.ts';
+@config '../../tailwind.config.mts';
 @plugin 'tailwindcss-animate';
 @custom-variant dark (&:is(.dark *));
 
