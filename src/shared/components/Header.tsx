@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Logo from '@/shared/assets/logos/logo.webp'
 import URL_ROUTES from '../constants/urlRoute'
 import { AppNav } from '../ui/navs/AppNav'
-import { CustomConnectButton } from './custom-connect-btn'
+import { SignInButton } from '../ui/buttons/sign-in-btn'
 
 const hubNavs = [
   { label: 'Home', id: URL_ROUTES.HOME },
@@ -31,7 +31,7 @@ export default function Header() {
         </div>
 
         <section className="relative z-10 text-right">
-          <CustomConnectButton />
+          <SignInButton />
         </section>
       </div>
     </nav>

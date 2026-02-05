@@ -37,6 +37,7 @@
     "ethers": "^6.16.0",
     "framer-motion": "^12.26.2",
     "gsap": "^3.14.2",
+    "iron-session": "^8.0.4",
     "lenis": "^1.3.17",
     "lucide-react": "^0.562.0",
     "motion": "^12.26.2",
