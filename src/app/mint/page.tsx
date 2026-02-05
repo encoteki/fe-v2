@@ -1,10 +1,10 @@
 'use client'
 
-import ReviewTransaction from '@/features/mint/components/ReviewTransaction'
-import SelectPaymentMethod from '@/features/mint/components/SelectPaymentMethod'
-import TransactionStatus from '@/features/mint/components/TransactionStatus'
-import { MintStatus } from '@/features/mint/contants/MintEnum'
-import { useMintCtx } from '@/features/mint/context/MintContext'
+import ReviewTransaction from '@/components/mint/review-transaction'
+import SelectPaymentMethod from '@/components/mint/select-payment-method'
+import TransactionStatus from '@/components/mint/transaction-status'
+import { MintStatus } from '@/enums/mint.enum'
+import { useMintCtx } from '@/contexts/mint.context'
 
 export default function MintPage() {
   const { status } = useMintCtx()

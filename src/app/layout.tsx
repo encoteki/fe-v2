@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Outfit } from 'next/font/google'
 import './globals.css'
-import Providers from '@/shared/providers/Providers'
+import Providers from '@/providers/providers'
 
 const outfit = Outfit({
   subsets: ['latin'],

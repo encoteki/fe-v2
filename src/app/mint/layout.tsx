@@ -1,8 +1,8 @@
 'use client'
 
-import { MintProvider } from '@/features/mint/context/MintContext'
-import Footer from '@/shared/components/Footer'
-import Header from '@/shared/components/Header'
+import { MintProvider } from '@/contexts/mint.context'
+import Footer from '@/components/footer'
+import Header from '@/components/header'
 
 export default function MintLayout({
   children,

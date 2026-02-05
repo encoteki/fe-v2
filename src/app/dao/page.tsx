@@ -1,8 +1,8 @@
-import { DAOList } from '@/features/dao/components/DaoList'
-import { DaoType } from '@/features/dao/enums/daoTypesEnum'
-import { AnimatedTabs } from '@/features/dao/ui/AnimatedTabs'
-import URL_ROUTES from '@/shared/constants/urlRoute'
-import Breadcrumbs from '@/shared/ui/navs/Breadcrumbs'
+import { DAOList } from '@/components/dao/dao-list'
+import { DaoType } from '@/enums/dao-types.enum'
+import { AnimatedTabs } from '@/components/dao/animated-tabs'
+import URL_ROUTES from '@/constants/url-route'
+import Breadcrumbs from '@/ui/navs/breadcrumbs'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

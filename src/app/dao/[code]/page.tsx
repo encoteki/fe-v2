@@ -1,11 +1,11 @@
 'use client'
 
-import { ProposalType } from '@/features/dao/enums/daoTypesEnum'
-import Badge from '@/features/dao/ui/Badge'
-import Breadcrumbs from '@/shared/ui/navs/Breadcrumbs'
-import DefaultButton from '@/shared/ui/buttons/DefaultButton'
+import { ProposalType } from '@/enums/dao-types.enum'
+import Badge from '@/ui/badge'
+import Breadcrumbs from '@/ui/navs/breadcrumbs'
+import DefaultButton from '@/ui/buttons/default-btn'
 import { use, useMemo, useState } from 'react'
-import URL_ROUTES from '@/shared/constants/urlRoute'
+import URL_ROUTES from '@/constants/url-route'
 
 interface DaoDetailPageProps {
   params: Promise<{ code: string }>

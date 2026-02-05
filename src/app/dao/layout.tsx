@@ -1,8 +1,8 @@
 'use client'
 
-import { DaoProvider } from '@/features/dao/context/DaoContext'
-import Footer from '@/shared/components/Footer'
-import Header from '@/shared/components/Header'
+import { DaoProvider } from '@/contexts/dao.context'
+import Footer from '@/components/footer'
+import Header from '@/components/header'
 
 export default function DaoLayout({ children }: { children: React.ReactNode }) {
   return (
