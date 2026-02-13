@@ -1,15 +1,15 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useChainId, useConnection } from 'wagmi'
+import { useChainId } from 'wagmi'
 import DefaultButton from '@/ui/buttons/default-btn'
 import { useMintCtx } from '../../contexts/mint.context'
 import { getPaymentMethods, Token } from '@/constants/contracts/payments'
 import { PaymentCard } from './payment-card'
 import { Skeleton } from '@/ui/skeleton'
-import { Wallet } from 'lucide-react'
 import { MintStatus } from '../../enums/mint.enum'
 import { TSB_CONTRACTS } from '@/constants/contracts/addresses'
+import { useUser } from '@/hooks/useUser'
 
 export default function SelectPaymentMethod() {
   const [localLoading, setLocalLoading] = useState<boolean>(true)
@@ -17,19 +17,17 @@ export default function SelectPaymentMethod() {
   const [paymentMethods, setPaymentMethods] = useState<Token[]>([])
   const { setPaymentMethod, setTargetContract, setStatus } = useMintCtx()
   const chainId = useChainId()
-  const { isConnected, isConnecting, isReconnecting } = useConnection()
+  const { isLoggedIn, isLoading: isUserLoading } = useUser()
 
-  const isLoadingState = isConnecting || isReconnecting || localLoading
+  const isLoadingState = isUserLoading || localLoading
 
   useEffect(() => {
-    if (isReconnecting) return
-
-    if (!isConnected) {
+    // Reset state when user logs out
+    if (!isLoggedIn) {
       setLocalLoading(false)
       setPaymentMethods([])
       return
     }
-
     setLocalLoading(true)
 
     // Get payment methods based on the current chain ID
@@ -42,11 +40,11 @@ export default function SelectPaymentMethod() {
     }, 300)
 
     return () => clearTimeout(timer)
-  }, [chainId, isConnected, isReconnecting])
+  }, [chainId, isLoggedIn])
 
   // On click button
   const onClickReview = () => {
-    if (!isConnected) return
+    if (!isLoggedIn) return
     setPaymentMethod(paymentMethods[activeIdx])
     setTargetContract(TSB_CONTRACTS[chainId])
     setStatus(MintStatus.REVIEW)
@@ -82,18 +80,6 @@ export default function SelectPaymentMethod() {
               </div>
             </div>
           ))
-        ) : !isConnected ? (
-          <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-gray-300 bg-gray-50 py-8 text-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-200 text-gray-500">
-              <Wallet className="h-6 w-6" />
-            </div>
-            <div className="space-y-1">
-              <p className="font-medium text-gray-900">Wallet not connected</p>
-              <p className="text-sm text-gray-500">
-                Please connect your wallet to view payment options.
-              </p>
-            </div>
-          </div>
         ) : paymentMethods.length > 0 ? (
           paymentMethods.map((item: Token, idx) => (
             <PaymentCard
@@ -112,11 +98,11 @@ export default function SelectPaymentMethod() {
 
       <DefaultButton
         onClick={onClickReview}
-        disabled={!isConnected || isLoadingState || paymentMethods.length === 0}
+        disabled={!isLoggedIn || isLoadingState || paymentMethods.length === 0}
       >
         {isLoadingState
           ? 'Loading...'
-          : !isConnected
+          : !isLoggedIn
             ? 'Connect Wallet'
             : 'Mint'}
       </DefaultButton>
