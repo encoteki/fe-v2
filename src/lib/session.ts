@@ -5,6 +5,7 @@ export interface SessionData {
   siwe?: {
     address: string
   }
+  hasReferral: boolean
 }
 
 if (!process.env.IRON_SESSION_PASSWORD) {

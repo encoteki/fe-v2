@@ -2,6 +2,7 @@ import { getIronSession } from 'iron-session'
 import { cookies } from 'next/headers'
 import { SiweMessage } from 'siwe'
 import { sessionOptions, SessionData } from '@/lib/session'
+import { supabaseAdmin } from '@/lib/supabase/admin' // 1. Pastikan import ini ada
 
 export async function POST(request: Request) {
   const session = await getIronSession<SessionData>(
@@ -18,19 +19,36 @@ export async function POST(request: Request) {
       return Response.json({ message: 'Invalid nonce' }, { status: 422 })
     }
 
-    session.siwe = {
-      address: data.address,
+    const userAddress = data.address.toLowerCase()
+
+    // Check if already apply referral
+    const { data: referralData, error } = await supabaseAdmin
+      .from('referral')
+      .select('id')
+      .eq('address'.toLowerCase(), userAddress)
+      .single()
+
+    if (error && error.code !== 'PGRST116') {
+      console.error('Referral Check Error:', error)
     }
+
+    session.siwe = {
+      address: userAddress,
+    }
+    session.hasReferral = !!referralData
     session.nonce = undefined
 
     await session.save()
 
-    return Response.json({ ok: true }, { status: 200 })
+    return Response.json(
+      { success: true, hasReferral: !!referralData },
+      { status: 200 },
+    )
   } catch (error) {
     console.error(error)
     session.destroy()
     return Response.json(
-      { ok: false, message: 'Invalid signature' },
+      { success: false, message: 'Invalid signature' },
       { status: 500 },
     )
   }

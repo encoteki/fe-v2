@@ -14,6 +14,7 @@ export async function GET() {
     return Response.json({
       isLoggedIn: true,
       address: session.siwe.address,
+      hasReferral: session.hasReferral,
     })
   }
 

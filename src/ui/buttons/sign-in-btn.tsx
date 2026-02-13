@@ -1,49 +1,30 @@
+'use client'
+
 import { useState, useEffect, useRef } from 'react'
-import { useConnection, useSignMessage, useChainId, useDisconnect } from 'wagmi'
+import { useSignMessage, useChainId, useDisconnect, useConnection } from 'wagmi'
 import { SiweMessage } from 'siwe'
 import { useConnectModal } from '@xellar/kit'
-import { CustomConnectButton } from '@/ui/buttons/custom-connect-btn'
+import { useUser } from '@/hooks/useUser'
 
 export function SignInButton() {
   const { open } = useConnectModal()
-  const chainId = useChainId()
-
   const { address, isConnected } = useConnection()
+  const chainId = useChainId()
   const signMessage = useSignMessage()
   const disconnect = useDisconnect()
-
+  const { isLoggedIn, isLoading: isSessionLoading, mutate } = useUser()
   const [isSigningIn, setIsSigningIn] = useState(false)
-  const [isSessionValid, setIsSessionValid] = useState(false)
-
   const shouldSignRef = useRef(false)
 
-  // Check Session
-  useEffect(() => {
-    const checkSession = async () => {
-      try {
-        const res = await fetch('/api/session')
-        const data = await res.json()
-        if (data.isLoggedIn) {
-          setIsSessionValid(true)
-        }
-      } catch (error) {
-        console.error('Gagal cek session:', error)
-      }
-    }
-    checkSession()
-  }, [])
-
-  // Handle Login (SIWE)
+  // Login SIWE
   const handleLogin = async () => {
     try {
       if (!address || !chainId) return
       setIsSigningIn(true)
 
-      // Get Nonce
       const nonceRes = await fetch('/api/nonce')
       const nonce = await nonceRes.text()
 
-      // Create message
       const message = new SiweMessage({
         domain: window.location.host,
         address: address,
@@ -53,89 +34,89 @@ export function SignInButton() {
         chainId: chainId,
         nonce: nonce,
       })
-      const messageToSign = message.prepareMessage()
 
-      // Sign Message
+      const messageToSign = message.prepareMessage()
       const signature = await signMessage.mutateAsync({
         message: messageToSign,
       })
 
-      // Verify signature (message <-> signature)
       const verifyRes = await fetch('/api/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: messageToSign, signature }),
       })
 
-      if (!verifyRes.ok) throw new Error('Failed to verify signature')
+      if (!verifyRes.ok) throw new Error('Failed to verify')
 
-      setIsSessionValid(true)
+      await mutate()
+
       shouldSignRef.current = false
     } catch (error) {
-      console.error('❌ Login Error:', error)
+      console.error('Login Error:', error)
+      await disconnect.mutateAsync()
     } finally {
       setIsSigningIn(false)
     }
   }
 
-  // Handle Logout (Disconnect + destroy session)
+  // Logout
   const handleLogout = async () => {
     try {
-      // Delete session from backend
       await fetch('/api/session', { method: 'DELETE' })
-
-      // Disconnect wallet
       if (isConnected) {
         await disconnect.mutateAsync()
       }
-
-      // Reset State
-      setIsSessionValid(false)
+      await mutate(undefined, false)
       shouldSignRef.current = false
+      window.location.href = '/login'
     } catch (error) {
-      console.error('Logout error:', error)
+      console.error('Failed to logout:', error)
     }
   }
+
+  // Auto effect SIWE
+  useEffect(() => {
+    if (
+      isConnected &&
+      address &&
+      shouldSignRef.current &&
+      !isLoggedIn &&
+      !isSigningIn
+    ) {
+      handleLogin()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isConnected, address, isLoggedIn, isSigningIn])
 
   const handleClick = () => {
     if (!isConnected) {
-      // Wallet not connected yet
       shouldSignRef.current = true
       open()
     } else {
-      // Wallet connected, but yet Sign-In with Ethereum
       handleLogin()
     }
   }
 
-  // Auto trigger
-  useEffect(() => {
-    console.log('State Change:', {
-      isConnected,
-      address,
-      shouldSign: shouldSignRef.current,
-    })
-
-    if (isConnected && address && shouldSignRef.current && !isSessionValid) {
-      handleLogin()
-      shouldSignRef.current = false
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isConnected, address, isSessionValid])
-
-  // IsConnected + IsSessionValid
-  if (isSessionValid && isConnected) {
+  if (isSessionLoading) {
     return (
-      <div className="flex items-center gap-2">
-        <CustomConnectButton />
+      <button
+        className="w-full animate-pulse cursor-pointer rounded-4xl bg-gray-200 px-4 py-3 text-gray-500 duration-300 hover:scale-105 hover:bg-(--green-10) disabled:cursor-not-allowed disabled:opacity-50 md:px-6 md:py-4"
+        disabled
+      >
+        Loading...
+      </button>
+    )
+  }
 
-        <button
-          onClick={handleLogout}
-          className="ml-2 rounded-md border border-red-200 px-3 py-1 text-sm font-medium text-red-500 transition-colors hover:bg-red-50 hover:text-red-700"
-        >
-          Disconnect
-        </button>
-      </div>
+  // Disconnect Button
+  if (isLoggedIn && isConnected) {
+    return (
+      <button
+        onClick={handleLogout}
+        className="w-full cursor-pointer rounded-4xl bg-white py-3 font-medium text-primary-red duration-300 marker:text-sm hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50 md:px-6 md:py-4 md:text-base"
+      >
+        Disconnect
+      </button>
     )
   }
 
@@ -143,13 +124,39 @@ export function SignInButton() {
     <button
       onClick={handleClick}
       disabled={isSigningIn}
-      className="rounded bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700 disabled:opacity-50"
+      className="w-full cursor-pointer rounded-4xl bg-primary-green py-3 font-medium text-white duration-300 marker:text-sm hover:scale-105 hover:bg-green-10 disabled:cursor-not-allowed disabled:opacity-50 md:px-6 md:py-4 md:text-base"
     >
-      {isSigningIn
-        ? 'Signing...'
-        : isConnected
-          ? 'Sign-In with Ethereum'
-          : 'Sign In'}
+      {isSigningIn ? (
+        <Loading label="Signing..." />
+      ) : isConnected ? (
+        'Sign-In with Ethereum'
+      ) : (
+        'Sign In'
+      )}
     </button>
+  )
+}
+
+function Loading({ label = 'Loading...' }: { label: string }) {
+  return (
+    <span className="flex w-full justify-center gap-2">
+      <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24">
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+          fill="none"
+        />
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+        />
+      </svg>
+      {label}
+    </span>
   )
 }
